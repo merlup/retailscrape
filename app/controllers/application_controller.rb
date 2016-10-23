@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 include SessionsHelper
-include Authenticable
+
 before_action -> { flash.now[:info] = flash[:info].html_safe if flash[:html_safe] && flash[:info] }
  protect_from_forgery with: :exception
 

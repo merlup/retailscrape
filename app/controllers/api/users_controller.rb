@@ -1,6 +1,6 @@
 module Api
 	class UsersController  < JSONAPI::ResourceController
-	before_action :authenticate_with_token!
+	
   
 	def show
 		@user = User.find_by(params[:user_name]) || @user = User.find_by_user_name(params[:user_name])

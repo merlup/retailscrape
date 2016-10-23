@@ -67,12 +67,6 @@ def get_type
 end
 
 
-def create_guest_user
-	@user = User.new
-	@user.user_name = "Guest#{@user.id}"
-	@user.password = "password"
-end
-
 def create 
 	 product = current_user.products.build(product_params)
 end

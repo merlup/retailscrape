@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     get 'app_api' => "products#app_api"
     get 'users/:id' => "users#show"
     get 'destroy_all' => 'products#destroy_all'
+    post 'log_in' =>  'sessions#create'
+    get 'log_in' => 'sessions#create'
     jsonapi_resources :products
-    jsonapi_resources :users
+    jsonapi_resources :users, except: :create
+    resources :sessions
+
   end
  
 
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
   resources :line_items
   resources :dashboard
   resources :users
+  resources :api_keys
  
 
   

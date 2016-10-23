@@ -18,14 +18,35 @@
 	</div>
 	 <% else %>
 	 <div>
+	 <% if current_user != nil &&  current_user.api_keys.blank? %>
 		<h3> Start Here! </h3>
+		<p> Create an Api Key </p>
+		<%= render template: "api_keys/new" %>
+		<% end %>
   		<%= link_to "Get Mens Belts from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "belts"} %> 
+  		
   	</div>
  	<% end %>
 </div>
 
 <div style="text-align:center">
 	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
+		<% if !logged_in? || current_user.api_keys.blank? %>
+			<p> Be sure to have already created your Api Keys </p>
+		<% end %>
+	
+	<div>
+		<% if current_user != nil %>
+		<p> Below are your Api Keys </p>
+			<% current_user.api_keys.each do |api_key| %>
+				<%= api_key.access_token %>
+				<br>
+			<% end %>
+			<% if !current_user.api_keys.blank? %>
+		<%= render template: "api_keys/new" %>
+		<% end %>
+		<% end %>
+	</div>
 	<p> Add the PostMan Chrome Extension to test the public Api </p>
 	<p>  (https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm/related?hl=en)</p>
 </div>

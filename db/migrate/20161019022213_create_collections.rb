@@ -4,7 +4,7 @@ class CreateCollections < ActiveRecord::Migration[5.0]
     t.string :client
     t.string :line_items
     t.integer :user_id
-      t.timestamps
+     t.timestamps
     end
 
   end

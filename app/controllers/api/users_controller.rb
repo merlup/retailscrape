@@ -1,16 +1,21 @@
 module Api
 	class UsersController  < JSONAPI::ResourceController
-	
+	before_action :authenticate_with_token!
+  
 	def show
-		@user = User.find_by_id(params[:id]) || @user = User.find_by_user_name(params[:user_name])
+		@user = User.find_by(params[:user_name]) || @user = User.find_by_user_name(params[:user_name])
 		render json: @user.products.to_json
 	end
 
-	def create
-		@user = User.create(user_params)
-		@user.save 
-		p "fuck"
-	end
+	def update
+    user = current_user
+
+    if user.update(user_params)
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
 	
 
 	private 

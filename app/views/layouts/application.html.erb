@@ -11,31 +11,31 @@
     <nav>
       <%= link_to "Home", root_url %>
       <%= link_to "Get Products", products_path %> 
-      <%= link_to "My Collections", collections_path %>
+     
 
       <% if current_user != nil %>
-      <%= link_to "Log Out", log_out_path %>
-      Logged in as: <%= current_user.user_name %>
-
+       <%= link_to "My Collections", collections_path %>
+        <%= link_to "Log Out", log_out_path %>
+        Logged in as: <%= current_user.user_name %>
       <% else %>
       <%= link_to "Log In", log_in_path %>
       <%= link_to "Sign Up", new_user_path %>
       <% end %>
    </nav>
      <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
-    <div class="warning" style="background-color:orange;">
-      <%= flash[:warning] %>
-      </div>
-      <div class="notice" style="background-color:yellow;">
-      <%= flash[:notice] %>
-      </div>
-      <div class="danger" style="background-color:red;">
-      <%= flash[:danger] %>
-      </div>
-      <div class="success" style="background-color:green;">
-      <%= flash[:success] %>
-      </div>
-  <% end %>
+       <div class="warning" style="background-color:orange;">
+        <%= flash[:warning] %>
+        </div>
+        <div class="notice" style="background-color:yellow;">
+        <%= flash[:notice] %>
+        </div>
+        <div class="danger" style="background-color:red;">
+        <%= flash[:danger] %>
+        </div>
+        <div class="success" style="background-color:green;">
+        <%= flash[:success] %>
+        </div>
+      <% end %>
     <%= yield %>
   </body>
 </html>

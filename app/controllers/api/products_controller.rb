@@ -1,7 +1,6 @@
 module Api
 	class ProductsController  < JSONAPI::ResourceController
-
-
+	before_action :restrict_access, only: [:index]
 
 	  def app_api
 	  	render template: "products/app_api"
@@ -74,6 +73,10 @@ def create_guest_user
 	@user.password = "password"
 end
 
+def create 
+	 product = current_user.products.build(product_params)
+end
+
 	      def get_products
 	      get_type()
 	      # This query is prefomed to create four needed variables.
@@ -93,7 +96,7 @@ end
 	    count = 0
 
 	    # Currently a Guest User is created for api queries/ although you can also query by user id.
-	    create_guest_user()
+	   
 	    # This is the recursive method that will preform a parse on every page on the scraped site.
 	
 
@@ -117,11 +120,10 @@ end
 	            else
 	              @product.price = product.at_css(".priceSale").text.strip
 	            end
-	          @product.user_id = @user.id
-	          @product.save
-	          @user.products << [@product]
-	          @user.save
 	         
+	          @product.save
+	         
+	         	
 	          item_count = item_count + 1
 	          count = count + 1
 	        end
@@ -135,10 +137,14 @@ end
 
 	#Calling the helper method on the first page
 	traverse.call(@first_page)
-	params[:user_id] = @user.id
-	p params
 	 redirect_to products_path 
-	end
+	end    
+
+	def destroy
+	    product = current_user.products.find(params[:id])
+	    product.destroy
+	    head 204
+  	end
 
 	def destroy_all
 		
@@ -147,6 +153,12 @@ end
 
 
 	private
+
+
+	    def restrict_access
+	  api_key = ApiKey.find_by_access_token(params[:token])
+        head :unauthorized unless api_key
+	    end
 
 		def product_params
 			params.require(:product).permit(:image, :price, :brand, :description, :sale, :sale_price)

@@ -7,6 +7,7 @@ class CreateLineItems < ActiveRecord::Migration[5.0]
       t.string :sale_price
       t.string :type
       t.boolean :sale
+      t.string :image
       t.belongs_to :collection, foreign_key: true
       t.timestamps
     end

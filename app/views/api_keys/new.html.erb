@@ -1,0 +1,5 @@
+<%= form_for (ApiKey.create!) do |f|%>
+<h3> Press this Button to create an Api Key </h3>
+<%= f.hidden_field :access_token %>
+<%= f.submit "Create an Api Key" %>
+<% end %>

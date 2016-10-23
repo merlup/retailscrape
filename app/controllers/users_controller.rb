@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	# Needs Cleanup and Refactoring
+		# Needs Cleanup and Refactoring
 
 	def create
 		@user = User.new(user_params)
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 			flash[:success] = "Welcome to the App"
 			current_user = @user
 			 session[:user_id] = @user.id
+
 			log_in @user
 			redirect_to root_url
 			else 
@@ -77,7 +78,7 @@ private
 	end
 
 	def user_params
-		params.require(:user).permit(:user_name, :password, :products, collection_attributes: [:id, :line_items ])
+		params.require(:user).permit(:api_key, :user_name, :password, :products, :auth_token, collection_attributes: [:id, :line_items ])
 	end
 
 end

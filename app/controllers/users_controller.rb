@@ -73,7 +73,7 @@ private
 	end
 
 	def correct_user?
-		@user.user_name == "smart_dev"
+		current_user.user_name == "smart_dev"
 	end
 
 	def user_params

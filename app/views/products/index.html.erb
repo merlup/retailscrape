@@ -16,16 +16,12 @@
   </div>
 </div>
 <% else  %>
-  <%= link_to "Get Mens Jeans from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "jeans"} %> 
-  <%= link_to "Get Mens Coats and Jackets from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "coats-jackets"} %> 
-  <%= link_to "Get Mens Button Downs from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "coats-jackets"} %> 
-  <%= link_to "Get Mens Suits and Tuxedos from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "suits-tux"} %>
-  <%= link_to "Get Mens Belts from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "belts"} %> 
-  <%= link_to "Get Mens Dress Shoes from Bloomingdales", {:controller => "products", :action => "get_products", :type => "dress-shoes"} %> 
-  <%= link_to "Get Mens Sneakers from Bloomingdales", {:controller => "products", :action => "get_products", :type => "sneakers"} %>
-  <%= link_to "Get Mens Sneakers from Bloomingdales", {:controller => "products", :action => "get_products", :type => "sweaters"} %> 
-  <%= link_to "Get Mens Bags from Bloomingdales", {:controller => "products", :action => "get_products", :type => "bags"} %>
-  <%= link_to "Get Mens Watches from Bloomingdales", {:controller => "products", :action => "get_products", :type => "watches"} %>  
+<h2> Choose the type of Product to query from the Mens section. </h2>
+<%= form_tag( 'get_products', :method => :get ) %>
+ <%= select_tag :type, options_for_select(["jeans","coats-jackets","suits-tux","belts","dress-shoes","sneakers","sweaters","bags","watches"])  %>
+ <br>
+ <%= submit_tag "Get From Bloomingdales", name: nil %>
+
 
 <h3> <%= link_to "Destroy Search", {:controller => "products", :action => "destroy_all"} %> </h3>
 
@@ -36,7 +32,7 @@
 <br>
 <div>
 <%= image_tag product.image %> 
-<br> image url: <%= product.image_url %>
+<br> image url: <%= product.original_image_url %>
 <br>
 	<%= product.brand %>
 <br>

@@ -84,7 +84,7 @@ def get_type
   end
 
   def create
-    @product = Product.create(user_params)
+     
   end
 
   def get_products
@@ -116,24 +116,20 @@ def get_type
       @doc.css(@selector).each do |result|
         result.css(".thumbnailItem").each do |product|
         
-          @product = Product.create
+          @product =  @product = Product.create(params[:product_params])
          
           @product.user_id = current_user.id
           @product.description = product.at_css("#prodName").text
           @product.brand = product.at_css("#brandName").text
-          @product.image_url = product.at_css("img").attr('src')
+          @product.original_image_url = product.at_css("img").attr('src')
           @product.remote_image_url = product.at_css("img").attr('src')
+           @product.price = product.at_css(".priceSale").text.strip
             if product.at_css(".prices").text.strip.include?("Sale")
               @product.sale = true
               @product.sale_price = product.at_css(".priceSale").text.strip
-            else
-              @product.price = product.at_css(".priceSale").text.strip
             end
-
             @product.save
-            
            save_to_user(@product)
-
           item_count = item_count + 1
           count = count + 1
         end
@@ -174,7 +170,7 @@ end
 private
 
 	def product_params
-		 params.require(:product).permit(:image, :price, :brand, :description, :sale, :sale_price, :image_url, :user_id, :collection_id, :color, :type)
+		 params.require(:product).permit(:image, :price, :brand, :description, :sale, :sale_price, :original_image_url, :user_id, :collection_id, :color, :type)
 	end
 
 end

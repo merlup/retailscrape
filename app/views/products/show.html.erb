@@ -1,0 +1,7 @@
+<%= image_tag @product.image %>
+<br>
+<%= @product.brand %>
+<%= @product.price %>
+<% if @product.sale %>
+	<%= @product.sale_price %>
+<% end %>

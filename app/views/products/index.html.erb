@@ -1,0 +1,65 @@
+ 
+
+<br>
+<br>
+<% if !logged_in? %>
+<div style="text-align:center;">
+  <h2> To get products from Bloomingdales.com </h2>
+  <div style="display:inline-block;">
+  <h3> Log In </h3>
+  <%= render template: "sessions/new" %>
+  </div>
+ 
+  <div style="display:inline-block;">
+  <h3> Sign Up </h3>
+  <%= render template: "users/new" %>
+  </div>
+</div>
+<% else  %>
+  <%= link_to "Get Mens Jeans from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "jeans"} %> 
+  <%= link_to "Get Mens Coats and Jackets from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "coats-jackets"} %> 
+  <%= link_to "Get Mens Button Downs from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "coats-jackets"} %> 
+  <%= link_to "Get Mens Suits and Tuxedos from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "suits-tux"} %>
+  <%= link_to "Get Mens Belts from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "belts"} %> 
+  <%= link_to "Get Mens Dress Shoes from Bloomingdales", {:controller => "products", :action => "get_products", :type => "dress-shoes"} %> 
+  <%= link_to "Get Mens Sneakers from Bloomingdales", {:controller => "products", :action => "get_products", :type => "sneakers"} %>
+  <%= link_to "Get Mens Sneakers from Bloomingdales", {:controller => "products", :action => "get_products", :type => "sweaters"} %> 
+  <%= link_to "Get Mens Bags from Bloomingdales", {:controller => "products", :action => "get_products", :type => "bags"} %>
+  <%= link_to "Get Mens Watches from Bloomingdales", {:controller => "products", :action => "get_products", :type => "watches"} %>  
+
+<h3> <%= link_to "Destroy Search", {:controller => "products", :action => "destroy_all"} %> </h3>
+
+
+<h1> Recieved <%= current_user.products.count %> Products from Bloomingdales.com </h1>
+<% current_user.products.each do |product| %>
+<br>
+<br>
+<div>
+<%= image_tag product.image %> 
+<br> image url: <%= product.image_url %>
+<br>
+	<%= product.brand %>
+<br>
+	<%= product.description %>
+<br>
+
+<% if product.sale_price == nil %>
+	 <%= product.price %> 
+<br>
+<% else %>
+	<p style="color:red"> On Sale: <%= product.sale_price %> </p>
+<% end %>
+</div>
+<%= link_to "Destroy", product, method: :delete, data: { confirm: "You sure?" } %> 
+<%= link_to "View Product", product_path(product.id) %> 
+<%= link_to "Add Product to Collection", {:controller => "collections", :action => "add_to_collection", :product_id => product.id } %>
+
+<div>
+	<h3> Product as Json Object </h3>
+	<%= product.to_json %>
+</div>
+
+<% end %>
+<br>
+<%= will_paginate @products %>
+<% end %>

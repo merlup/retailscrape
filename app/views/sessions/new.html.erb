@@ -1,0 +1,10 @@
+  <%= form_for(:session, url: log_in_path) do |f| %>
+  <%= f.label :user_name %>
+
+	 <%= f.text_field :user_name,  placeholder: "User Name" %>
+	 <br>
+	 <%= f.label :password %>
+ <%= f.password_field :password, class: 'form-control', placeholder: "Password" %>
+ <br>
+<%= f.submit "Log in" %>
+<% end %>

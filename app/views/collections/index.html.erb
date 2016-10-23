@@ -1,0 +1,22 @@
+<br>
+<% @collections.each do |collection| %>
+ <%= collection.id %>
+ <% if collection.line_items != nil %>
+  <% collection.line_items.each do |product| %>
+  <div>
+  		<%= image_tag product.image %>
+  		<br>
+	  <%= product.brand %>
+	  <br>
+	  <%= product.description %>
+	  <br>
+	  <%= product.price %>
+	  <br>
+	  <%= product.sale_price %>
+	<br>
+	<%= link_to "Remove Item", product, method: :delete, data: { confirm: "You sure?" } %> 
+	</div>
+  <% end %> 
+   <br>
+   <% end %>
+ <% end %>

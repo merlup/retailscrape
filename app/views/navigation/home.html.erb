@@ -1,0 +1,46 @@
+
+<h1 style="text-align:center;"> Welcome to Bloomingdales Retail Scrape</h1>
+<p style="text-align:center;"> The current features of this app consist of retreiving a variety of Products from Bloomingdales </p>
+<div style="text-align:center;">
+	<% if !logged_in? %>
+	<div>
+	  <div style="display:inline-block;">
+		  <h3> Log In </h3>
+		  <%= render template: "sessions/new" %>
+	  </div>
+
+	  
+
+	  <div style="display:inline-block;">
+	  	<h3> Sign Up </h3>
+	  	<%= render template: "users/new" %>
+	 </div>
+	</div>
+	 <% else %>
+	 <div>
+		<h3> Start Here! </h3>
+  		<%= link_to "Get Mens Belts from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "belts"} %> 
+  	</div>
+ 	<% end %>
+</div>
+
+<div style="text-align:center">
+	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
+	<p> Add the PostMan Chrome Extension to test the public Api </p>
+	<p>  (https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm/related?hl=en)</p>
+</div>
+<div>
+	<ul> <p style="color:green"> TO DO: </p>
+		<li> Create a Custom Collection for a client </li>
+		<li> Loading Wheel to let you know where the products currently are searching the database from scraped website </li>
+		<li> Possibly change how many items are scraped or customize the query </li>
+	</ul>
+	<ul> <p style="color:red"> To Fix: </p>
+	<li> While fetching products the process is pretty expensive. Takes a while to scrape site and return images and text on the saved model </li>
+	<li> Needs Optimization unless you can wait longer than 10 seconds before you see any content</li>
+	</ul>
+</div>
+<h3> Yours Truly, Merlin Jackson </h3>
+<a href="http://linkedin.com/in/merlup"> Merlin's Linked In </a>
+<br>
+<a href="http://github.com/merlup"> Merlin's Github </a>

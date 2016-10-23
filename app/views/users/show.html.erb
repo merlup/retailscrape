@@ -1,0 +1,16 @@
+<%= @user.user_name %>
+<% @user.collections.each do |product| %>
+<div>
+	<%= image_tag product.image %>
+
+<ul>
+<li>
+	<%= product.brand %> </li>
+	<li><%= product.description %> </li>
+	<li><%= product.price %> </li>
+	<li> Sale: <%= product.sale %> </li>
+	<li>Sale Price : <%= product.sale_price %> </li>
+<li><%= product.image_url %> </li>
+</ul>
+</div>
+<% end %>

@@ -77,7 +77,7 @@ end
 	      # Current_page is the First Page we initial query. 
 	      # Total Items is a string ie "100 products" this string then gets parsed for all Numbers in the string and then set as Total_number.
 	      # Number of Pages is needed to know how many pages we should have parsed
-	      @doc.css(@selector).each do |result|
+	      @doc.css(@selector).find_each do |result|
 	        @first_page = (result.css(".currentPage").text[-1]).to_i
 	        total_items = result.css('#productCount').text.strip
 	        @total_number = total_items.scan(/\d/).join('')
@@ -101,8 +101,8 @@ end
 	      end
 	    
 	      # This method will create a product model from elements parsed by the Nokogiri. 
-	      @doc.css(@selector).each do |result|
-	        result.css(".thumbnailItem").each do |product|
+	      @doc.css(@selector).find_each do |result|
+	        result.css(".thumbnailItem").find_each do |product|
 	          @product = Product.create
 
 	          @product.description = product.at_css("#prodName").text
@@ -111,9 +111,9 @@ end
 	            if product.at_css(".prices").text.strip.include?("Sale")
 	              @product.sale = true
 	              @product.sale_price = product.at_css(".priceSale").text.strip
-	            else
+	           end
 	              @product.price = product.at_css(".priceSale").text.strip
-	            end
+	            
 	         
 	          @product.save
 	         

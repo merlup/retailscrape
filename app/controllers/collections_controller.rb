@@ -17,22 +17,24 @@ class CollectionsController < ApplicationController
   	@collection = Collection.find_by_id(params[:id])
   end
 
+def create_line_item
+    @line_item = LineItem.new
+    @line_item.price = @product.price
+    @line_item.brand = @product.brand
+    @line_item.description = @product.description
+    @line_item.sale = @product.sale
+    @line_item.sale_price = @product.sale_price
+    @line_item.image = @product.image
+    @line_item.save
+end
+
   def add_to_collection 
   	product_id = params[:product_id]
   	@product = Product.find_by_id(product_id)
     @user = User.find_by_id(current_user.id)
     @collection = Collection.create(params[:collection_params])
-  	@line_item = LineItem.new
-  	@line_item.price = @product.price
-  	@line_item.brand = @product.brand
-  	@line_item.description = @product.description
-  	@line_item.sale = @product.sale
-  	@line_item.sale_price = @product.sale_price
-    @line_item.image = @product.image
-  	@line_item.save
-    p @line_item
-    p @collection
     @collection.user_id = current_user.id
+    create_line_item()
     @collection.line_items << [@line_item]
     @collection.save
   	redirect_to products_path

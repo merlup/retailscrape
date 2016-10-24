@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
   def index
     if current_user != nil
       @user = User.find_by_id(current_user.id)
-      @products = current_user.products
-    	@products = @products.paginate(:page => params[:page], :per_page => 90)
+      @products = current_user.products.paginate(:page => params[:page], :per_page => 90)
+    
     end
   end
 

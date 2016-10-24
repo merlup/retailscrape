@@ -27,7 +27,7 @@
 
 
 <h1> Recieved <%= current_user.products.count %> Products from Bloomingdales.com </h1>
-<% current_user.products.each do |product| %>
+<% current_user.products.find_each do |product| %>
 <br>
 <br>
 <div>

@@ -20,10 +20,11 @@
 	 <div>
 	 <% if current_user != nil &&  current_user.api_keys.blank? %>
 		<h3> Start Here! </h3>
-		<p> Create an Api Key </p>
+		<p> Create an Api Key for the API</p>
 		<%= render template: "api_keys/new" %>
 		<% end %>
-  		<%= link_to "Get Mens Belts from Bloomingdales",  {:controller => "products", :action => "get_products", :type => "belts"} %> 
+		<h3> Then Start Scraping Products </h3>
+  		<%= link_to "Get to Scraping", products_path%> 
   		
   	</div>
  	<% end %>
@@ -31,13 +32,13 @@
 
 <div style="text-align:center">
 	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
-		<% if !logged_in? || current_user.api_keys.blank? %>
+		<% if !logged_in? && current_user.api_keys.blank? %>
 			<p> Be sure to have already created your Api Keys </p>
 		<% end %>
 	
 	<div>
 		<% if current_user != nil %>
-		<p> Below are your Api Keys </p>
+		<p> Api Keys:  </p>
 			<% current_user.api_keys.each do |api_key| %>
 				<%= api_key.access_token %>
 				
@@ -52,18 +53,11 @@
 	<p> Add the PostMan Chrome Extension to test the public Api </p>
 	<p>  (https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm/related?hl=en)</p>
 </div>
-<div>
-	<ul> <p style="color:green"> TO DO: </p>
-		<li> Create a Custom Collection for a client </li>
-		<li> Loading Wheel to let you know where the products currently are searching the database from scraped website </li>
-		<li> Possibly change how many items are scraped or customize the query </li>
-	</ul>
-	<ul> <p style="color:red"> To Fix: </p>
-	<li> While fetching products the process is pretty expensive. Takes a while to scrape site and return images and text on the saved model </li>
-	<li> Needs Optimization unless you can wait longer than 10 seconds before you see any content</li>
-	</ul>
-</div>
+
 <h3> Yours Truly, Merlin Jackson </h3>
 <a href="http://linkedin.com/in/merlup"> Merlin's Linked In </a>
 <br>
 <a href="http://github.com/merlup"> Merlin's Github </a>
+<br>
+<a href="http://github.com/merlup/retailscrape">VISIT THE OPEN SOURCE REPO</a>
+

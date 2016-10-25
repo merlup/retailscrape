@@ -8,8 +8,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider.state('/products', { url: 'products',  views: {'main': { templateUrl: 'products', controller: 'ProductsCtrl'}}})
     $locationProvider.html5Mode({ enabled: true, requireBase: false });
 });
-ProductsCtrl.$inject = ['$scope', '$compile', '$timeout', "Product", '$location', '$http']; 
-function ProductsCtrl($scope, $compile, $timeout,  Product, $http,  $location) {
+
+var ProductsCtrl = ['$scope', '$compile', '$timeout', "Product", '$location', '$http',  function($scope, $compile, $timeout,  Product, $http,  $location) {
     
     
     var total_products = 0;
@@ -50,4 +50,4 @@ function ProductsCtrl($scope, $compile, $timeout,  Product, $http,  $location) {
     }
  
 
-};
+}];

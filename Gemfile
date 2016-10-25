@@ -22,7 +22,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem "puma_worker_killer"
 gem 'puma', '~> 3.0'
-
+ 
 group :development, :test do
   gem 'byebug', platform: :mri
 end

@@ -12,10 +12,13 @@
 //
 
 //= require angular
+
 //= require angular-ui-router
 //= require angularjs/rails/resource
 //= require angular-resource
 //= require jquery
 //= require jquery_ujs
 //= require angular_app
+
+
 //= require_tree .

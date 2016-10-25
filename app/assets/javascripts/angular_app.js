@@ -9,7 +9,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode({ enabled: true, requireBase: false });
 });
 
-var ProductsCtrl = ['$scope', '$compile', '$timeout', "Product", '$location', '$http',  function($scope, $compile, $timeout,  Product, $http,  $location) {
+app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$location', '$http',  function($scope, $compile, $timeout,  Product, $http,  $location) {
     
     
     var total_products = 0;
@@ -50,4 +50,4 @@ var ProductsCtrl = ['$scope', '$compile', '$timeout', "Product", '$location', '$
     }
  
 
-}];
+}]);

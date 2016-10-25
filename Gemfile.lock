@@ -98,6 +98,9 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
+    ngannotate-rails (1.2.2)
+      execjs
+      rails (>= 3.1)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -191,6 +194,7 @@ DEPENDENCIES
   jquery-rails
   jsonapi-resources
   listen (~> 3.0.5)
+  ngannotate-rails
   pg (= 0.18.4)
   puma (~> 3.0)
   puma_worker_killer
@@ -209,4 +213,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

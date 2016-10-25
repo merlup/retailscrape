@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     if current_user != nil
-     
+      @skip_header = true
       @products = current_user.products.order('created_at ASC').paginate(per_page: 90, page: params[:page])
     end
   end

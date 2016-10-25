@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   get 'app_api' => 'products#app_api'
   get "get_products" => "products#get_products"
   get "add_to_collection" => "collections#add_to_collection"
-  get 'log_out' => "sessions#destroy"
+  get 'logout' => "sessions#destroy"
+  delete 'logout' => "sessions#destroy"
   post 'log_in' =>  'sessions#create'
   get 'log_in' => 'sessions#new'
   post "users/:id" => "users#destroy"

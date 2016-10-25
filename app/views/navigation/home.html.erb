@@ -32,7 +32,7 @@
 
 <div style="text-align:center">
 	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
-		<% if !logged_in? && current_user.api_keys.blank? %>
+		<% if !logged_in? || !logged_in? && current_user.api_keys.blank? %>
 			<p> Be sure to have already created your Api Keys </p>
 		<% end %>
 	

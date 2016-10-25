@@ -6,20 +6,12 @@
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
 
-  <body>
-    <nav>
-      <%= link_to "Home", root_url %>
-      <%= link_to "Get Products", products_path %> 
-      <% if current_user != nil %>
-       <%= link_to "My Collections", collections_path %>
-        <%= link_to "Log Out", log_out_path %>
-        Logged in as: <%= current_user.user_name %>
-      <% else %>
-      <%= link_to "Log In", log_in_path %>
-      <%= link_to "Sign Up", new_user_path %>
-      <% end %>
-   </nav>
-     <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
+  <body ng-app="RetailScrape" ng-contoller="MainCtrl">
+  
+   
+      <div ui-view="main" >
+       <%= render file: "app/views/layouts/_header"  %> 
+         <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
        <div class="warning" style="background-color:orange;">
         <%= flash[:warning] %>
         </div>
@@ -34,5 +26,6 @@
         </div>
       <% end %>
     <%= yield %>
+    </div>
   </body>
 </html>

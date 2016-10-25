@@ -1,7 +1,7 @@
 class ApiKeysController < ApplicationController
 
 def new
-	
+	@user = current_user
 	@api_key = ApiKey.create
 end
 

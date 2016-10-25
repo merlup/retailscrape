@@ -17,25 +17,22 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
     Product.query({ id: 'id' }).then(function (results) {
         $scope.user_products = results;  
         total_products = $scope.user_products.length
-        
+ 
     });
 
     var user_products = [];
-    
-    if( user_products.length > 0) {
-        clearInterval(timer);
-    }
 
   
     $scope.start_get = function() {
         var timer = setInterval(function() {
             check_updates();
-        if( user_products.length > 90) {
-        clearInterval(timer);
-        }
+        
         },500);
     }
 
+    if( user_products.length > 90) {
+        clearInterval(timer);
+    }
 
 
 
@@ -49,7 +46,6 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
                     Product.query().then(function (results) {
                        $scope.user_products = results;
                        user_products = $scope.user_products;
-                   
                     });
             }
         });  

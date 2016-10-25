@@ -17,7 +17,7 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
     Product.query({ id: 'id' }).then(function (results) {
         $scope.user_products = results;  
         total_products = $scope.user_products.length
-        console.log("Total PRODUCTS:",total_products);
+        
     });
 
     var user_products = [];
@@ -30,9 +30,14 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
     $scope.start_get = function() {
         var timer = setInterval(function() {
             check_updates();
-           
+        if( user_products.length > 90) {
+        clearInterval(timer);
+        }
         },500);
     }
+
+
+
 
     function check_updates() {
         var current_count = 0;
@@ -46,10 +51,6 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
                        user_products = $scope.user_products;
                    
                     });
-                if (current_count == 90) {
-
-                    clearInterval(timer);;
-                }
             }
         });  
     }

@@ -18,12 +18,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.controller("MainCtrl",['$scope', '$location', function($scope, $location) {
+app.controller("MainCtrl",['$scope'  function($scope) {
 
 }]);
 
 
-app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$location', '$http',  function($scope, $compile, $timeout,  Product, $http,  $location) {
+app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) {
     
     var total_products = 0;
     Product.query({ id: 'id' }).then(function (results) {

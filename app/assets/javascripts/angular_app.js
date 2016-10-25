@@ -10,14 +10,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('products', { url: 'products',  views: {'main': { templateUrl: 'products', controller: 'MainCtrl'}}})
     .state('collections', { url: 'collections',  views: {'main': { templateUrl: 'collections', controller: 'MainCtrl'}}})
     .state('log_in', { url: 'log_in',  views: {'main': { templateUrl: 'sessions/new', controller: 'MainCtrl'}}})
-   .state('log_out', { url: 'log_out',  views: {'main': { templateUrl: '/', controller: 'MainCtrl'}}})
+   .state('log_out', { url: '',  views: {'main': { templateUrl: 'logout', controller: 'MainCtrl'}}})
    .state('sign_up', { url: 'collections',  views: {'main': { templateUrl: 'users/new', controller: 'MainCtrl'}}})
    
     $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 });
 
-app.controller("MainCtrl",['$scope', function($scope) {
+app.controller("MainCtrl",['$scope', '$location', function($scope, $location) {
 
 }]);
 

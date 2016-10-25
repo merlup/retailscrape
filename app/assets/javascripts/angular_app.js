@@ -40,7 +40,6 @@ app.controller("ProductsCtrl", ['$scope', '$compile', '$timeout', "Product", '$l
         var current_count = 0;
         Product.query().then(function (results) {
             current_count = results.length;  
-           
             if (current_count > total_products) {
                     Product.query().then(function (results) {
                        $scope.user_products = results;

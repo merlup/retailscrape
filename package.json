@@ -12,7 +12,7 @@
   },
   "engines": {
   "node": "0.10.x", 
-  }
+  },
   "_source": "https://github.com/angular/bower-angular.git",
   "_target": "v1.2.25",
   "_originalSource": "angular"

@@ -24,56 +24,45 @@ app.controller("MainCtrl",['$scope' , function($scope) {
 app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) {
     
     var total_products = 0;
+    var back_button = document.getElementById("back");
+    var next_button = document.getElementById("next");
+
     Product.query({ id: 'id' }).then(function (results) {
         $scope.user_products = results;  
         total_products = $scope.user_products.length
+        if (results.length < 30) {
+            next_button.style.visibility = "hidden" ;
+        }
     });
 
-    var user_products = [];
-    $scope.start_get = function() {
-        var timer = setInterval(function() {
-            check_updates();
-        });
-    }
+    var user_products = 0;
 
-    if( user_products.length > 90) {
-        clearInterval(timer);
-    }
-
-    function check_updates() {
+    
+    $scope.get_updates = function() {
         var current_count = 0;
-        Product.query().then(function (results) {
-            current_count = results.length;  
-            if (current_count > total_products) {
-                Product.query().then(function (results) {
-                   $scope.user_products = results;
-                   user_products = $scope.user_products;
+        var timer = setInterval(function() {
+            Product.query().then(function (results) {
+                console.log(current_count);
+                $scope.user_products = results;
+                current_count = results.length
+                user_products = results.length;  
+                if (current_count > total_products) {
                     if (results.length < 30) {
-                        console.log(results.length);
                         next_button.style.visibility = "hidden" ;
                     }
                     else {
                         next_button.style.visibility = "visible" ;
                     }
-                });
-            }
-        });  
+                }
+            });
+        },200);
+        
     }
 
-    Product.query().then(function (results) {
-        if (results.length < 30) {
-        next_button.style.visibility = "hidden" ;
-        }
-    })
-
     var counter = 0; 
-    var back_button = document.getElementById("back");
-    var next_button = document.getElementById("next");
-    
-   
 
     $scope.nextPage = function(product_total) {
-       counter += 1 ; 
+       counter = counter + 1 ; 
         var page_max =  Math.round((product_total) / 30) - 1;
        console.log(counter,page_max)
         $scope.products_per_page = Product.query({page: counter + 1}).then(function (results) {
@@ -97,7 +86,7 @@ app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) 
         var page_max =  Math.round((product_total) / 30) - 1;
           console.log(counter,page_max)
         if (counter > 0 ) {
-            $scope.products_per_page = Product.query({page: counter}).then(function (results) {
+            $scope.products_per_page = Product.query({page: counter - 1}).then(function (results) {
                 $scope.user_products = results;
                 $scope.searching = false;
                     if (counter < page_max ) {
@@ -105,7 +94,10 @@ app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) 
                     }
             });
         } 
-        
+        if (counter <= 0 ) {
+                back_button.style.visibility = "hidden" ;
+        }
+
            
     }
 }]);

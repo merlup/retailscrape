@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-  	@product = Product.new(params[:product_params])
+  	@product = Product.create
   end
 
   def show
@@ -71,12 +71,6 @@ def get_type
 
   end
 
-  def save_to_user(product)
-      if current_user.products == nil
-        current_user.products = []
-      end
-      current_user.products << product
-  end
 
   def create
      
@@ -118,7 +112,7 @@ def get_type
               @product.sale_price = product.at_css(".priceSale").text.strip
             end
           @product.save
-          save_to_user(@product)
+        
           item_count = item_count + 1
           next_page = next_page + 1
         end

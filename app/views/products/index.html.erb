@@ -27,9 +27,10 @@
 
 <%= form_tag( 'get_products', :method => :get ) %>
  <%= select_tag :type, options_for_select(["jeans","coats-jackets","suits-tux","belts","dress-shoes","sneakers","sweaters","bags","watches"])  %>
- <br>
-<button ng-click="start_get()" type="submit">Submit</button>
 
+ <br>
+<button ng-click="get_updates()" type="submit">Submit</button>
+ </form>
 <br>
 <br>
 <br>
@@ -38,13 +39,13 @@
     <button class="btn-sm btn-primary" id="next" ng-click="nextPage(<%= current_user.products.count %>)" type="button">Next page</button>
 
 <div ui-view="products">
-<div id="products" ng-repeat="user_products in user_products">
-<img ng-src="{{user_products.image.image.url}}"> <br>
-BRAND: {{user_products.brand}} <br>
-DESCRIPTION: {{user_products.description}} <br>
-PRICE: {{user_products.price}} 
+<div id="products" ng-repeat="user_product in user_products">
+<img ng-src="{{user_product.image.image.url}}"> <br>
+BRAND: {{user_product.brand}} <br>
+DESCRIPTION: {{user_product.description}} <br>
+PRICE: {{user_product.price}} 
 <br>
-JSON_OBJECT: {{user_products| json}}
+JSON_OBJECT: {{user_product| json}}
 
 
 </div>

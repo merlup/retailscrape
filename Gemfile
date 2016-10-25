@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
-
-gem 'ruby'
+     ruby '2.3.0'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'angularjs-rails-resource'
 gem 'angular-ui-router-rails'
-
+gem 'angularjs-rails'
 
 gem 'angular-rails-templates'
 gem 'jsonapi-resources'
@@ -29,7 +28,7 @@ group :development, :test do
 end
 
 group :assets do 
-gem 'angularjs-rails'
+
 end
 
 group :production do

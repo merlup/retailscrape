@@ -19,9 +19,9 @@
 
 
 <h1> Recieved <%= current_user.products.count %> Products from Bloomingdales.com </h1>
-<h3> <%= link_to "Destroy Search", {:controller => "products", :action => "destroy_all"} %> </h3>
+<h3> <a ui-sref="delete_all"> Delete Search </a>  </h3>
 
-<div ng-app="RetailScrape">
+<div >
 <div ng-controller="ProductsCtrl" >
 <h2> Choose the type of Product to query from the Mens section. </h2>
 
@@ -30,7 +30,7 @@
  <br>
 <button ng-click="start_get()" type="submit">Submit</button>
 <%= will_paginate @products %>
-<div ui-view="main">
+<div ui-view="products">
 <div id="products" ng-repeat="user_products in user_products">
 <img ng-src="{{user_products.image.image.url}}"> <br>
 BRAND: {{user_products.brand}} <br>

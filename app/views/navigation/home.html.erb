@@ -40,7 +40,9 @@
 		<p> Below are your Api Keys </p>
 			<% current_user.api_keys.each do |api_key| %>
 				<%= api_key.access_token %>
-				<br>
+				
+				 <%= link_to "Destroy", api_key, method: :delete, data: { confirm: "You sure?" } %>
+				 <br> 
 			<% end %>
 			<% if !current_user.api_keys.blank? %>
 		<%= render template: "api_keys/new" %>

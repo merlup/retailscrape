@@ -96,7 +96,9 @@ end
 
 
 	    traverse = lambda do |page|
-	      if item_count >= @total_number.to_f
+	    # BaseCase for escaping recursive function
+	    # After item count is equal to the total number of products we should have collected
+	      if item_count == @total_number.to_f
 	        return
 	      end
 	    
@@ -104,7 +106,6 @@ end
 	      @doc.css(@selector).find_each do |result|
 	        result.css(".thumbnailItem").find_each do |product|
 	          @product = Product.create
-
 	          @product.description = product.at_css("#prodName").text
 	          @product.brand = product.at_css("#brandName").text
 	          @product.remote_image_url = product.at_css("img").attr('src')
@@ -113,11 +114,7 @@ end
 	              @product.sale_price = product.at_css(".priceSale").text.strip
 	           end
 	              @product.price = product.at_css(".priceSale").text.strip
-	            
-	         
 	          @product.save
-	         
-	         	
 	          item_count = item_count + 1
 	          count = count + 1
 	        end

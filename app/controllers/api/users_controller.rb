@@ -1,6 +1,5 @@
 module Api
 	class UsersController  < JSONAPI::ResourceController
-	
   
 	def show
 		@user = User.find_by(params[:user_name]) || @user = User.find_by_user_name(params[:user_name])

@@ -2,7 +2,7 @@ class User < ApplicationRecord
 	before_create :generate_authentication_token!
 	has_many :collections
 	has_many :products
-	serialize :product
+	serialize :products
 	serialize :api_keys
 	has_many :api_keys
 	validates :user_name, :uniqueness => { :case_sensitive => false }

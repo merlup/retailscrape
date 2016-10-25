@@ -29,9 +29,7 @@ def create_line_item
 end
 
   def add_to_collection 
-  	product_id = params[:product_id]
-  	@product = Product.find_by_id(product_id)
-    @user = User.find_by_id(current_user.id)
+  	@product = Product.find_by_id(params[:product_id])
     @collection = Collection.create(params[:collection_params])
     @collection.user_id = current_user.id
     create_line_item()
@@ -57,10 +55,8 @@ end
 
   def destroy_line_item
     @line_item = LineItem.find_by_id(params[:id])
-    p @line_item
     @line_item.destroy
     @collection = Collection.find_by_id(params[:id])
-    p @collection
     @collection.destroy
     flash[:success] = "Item deleted"
     redirect_to collections_path

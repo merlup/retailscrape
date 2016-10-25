@@ -3,7 +3,7 @@
 <br>
 <br>
 <% if !logged_in? %>
-<div style="text-align:center;">
+<div style="text-align:center;" >
   <h2> To get products from Bloomingdales.com </h2>
   <div style="display:inline-block;">
   <h3> Log In </h3>
@@ -16,46 +16,37 @@
   </div>
 </div>
 <% else  %>
-<h2> Choose the type of Product to query from the Mens section. </h2>
-<%= form_tag( 'get_products', :method => :get ) %>
- <%= select_tag :type, options_for_select(["jeans","coats-jackets","suits-tux","belts","dress-shoes","sneakers","sweaters","bags","watches"])  %>
- <br>
- <%= submit_tag "Get From Bloomingdales", name: nil %>
-
-
-<h3> <%= link_to "Destroy Search", {:controller => "products", :action => "destroy_all"} %> </h3>
 
 
 <h1> Recieved <%= current_user.products.count %> Products from Bloomingdales.com </h1>
-<% current_user.products.find_each do |product| %>
-<br>
-<br>
-<div>
-<%= image_tag product.image %> 
-<br> image url: <%= product.original_image_url %>
-<br>
-	<%= product.brand %>
-<br>
-	<%= product.description %>
-<br>
+<h3> <%= link_to "Destroy Search", {:controller => "products", :action => "destroy_all"} %> </h3>
 
-<% if product.sale_price == nil %>
-	 <%= product.price %> 
-<br>
-<% else %>
-	<p style="color:red"> On Sale: <%= product.sale_price %> </p>
-<% end %>
-</div>
-<%= link_to "Destroy", product, method: :delete, data: { confirm: "You sure?" } %> 
-<%= link_to "View Product", product_path(product.id) %> 
-<%= link_to "Add Product to Collection", {:controller => "collections", :action => "add_to_collection", :product_id => product.id } %>
+<div ng-app="RetailScrape">
+<div ng-controller="ProductsCtrl" >
+<h2> Choose the type of Product to query from the Mens section. </h2>
 
-<div>
-	<h3> Product as Json Object </h3>
-	<%= product.to_json %>
-</div>
-
-<% end %>
-<br>
+<%= form_tag( 'get_products', :method => :get ) %>
+ <%= select_tag :type, options_for_select(["jeans","coats-jackets","suits-tux","belts","dress-shoes","sneakers","sweaters","bags","watches"])  %>
+ <br>
+<button ng-click="start_get()" type="submit">Submit</button>
 <%= will_paginate @products %>
+<div ui-view="main">
+<div id="products" ng-repeat="user_products in user_products">
+<img ng-src="{{user_products.image.image.url}}"> <br>
+BRAND: {{user_products.brand}} <br>
+DESCRIPTION: {{user_products.description}} <br>
+PRICE: {{user_products.price}} 
+<br>
+JSON_OBJECT: {{user_products| json}}
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+  <br> 
+</div>
+
 <% end %>

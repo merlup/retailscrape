@@ -9,7 +9,7 @@
     "type": "version",
     "tag": "v1.2.25",
     "commit": "0d956316b0472031ac895e57c14b8b2100eea9fb"
-  },  
+  },   
   "_source": "https://github.com/angular/bower-angular.git",
   "_target": "v1.2.25",
   "_originalSource": "angular"

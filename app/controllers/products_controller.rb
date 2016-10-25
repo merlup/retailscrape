@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
   def index
     if current_user != nil
       @skip_header = true
-      @products = current_user.products.order('created_at ASC').paginate(per_page: 90, page: params[:page])
+      if current_user.products.length <= 0
+        @products = []
+      else
+        @products = current_user.products.order('created_at ASC').paginate(per_page: 30, page: params[:page])
+      end
     end
   end
 
@@ -120,7 +124,7 @@ def get_type
         end
       end
     end
-    redirect_to products_path
+  render 'index'
 end
 
 
@@ -137,7 +141,7 @@ end
   end
 
   def destroy_all
-    @products = current_user.products
+    @products = Product.all
     @products.destroy_all
     redirect_to products_path
   end

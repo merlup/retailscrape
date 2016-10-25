@@ -29,7 +29,14 @@
  <%= select_tag :type, options_for_select(["jeans","coats-jackets","suits-tux","belts","dress-shoes","sneakers","sweaters","bags","watches"])  %>
  <br>
 <button ng-click="start_get()" type="submit">Submit</button>
-<%= will_paginate @products %>
+
+<br>
+<br>
+<br>
+  <button  class="btn-sm btn-primary" id="back" ng-click="backPage(<%= current_user.products.count %>)" style="visibility:hidden;" type="button">Back page</button>
+
+    <button class="btn-sm btn-primary" id="next" ng-click="nextPage(<%= current_user.products.count %>)" type="button">Next page</button>
+
 <div ui-view="products">
 <div id="products" ng-repeat="user_products in user_products">
 <img ng-src="{{user_products.image.image.url}}"> <br>

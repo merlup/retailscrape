@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api,  path: '/', constraints: { subdomain: 'api.retailscrape' } do
     root 'products#app_api' 
     get '/' => 'products#app_api'
-    get "get_products" => "products#get_products"
+    get "get_products_mens" => "products#get_products_mens"
     get 'app_api' => "products#app_api"
     get 'users/:id' => "users#show"
     get 'destroy_all' => 'products#destroy_all'
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   get 'product_apis' => 'product_api#index'
   get 'destroy_all' => 'products#destroy_all'
   get 'app_api' => 'products#app_api'
-  get "get_products" => "products#get_products"
+  get "get_products_mens" => "products#get_products_mens"
+  get "get_products_womens" => "products#get_products_womens"
+  post "get_products" => "products#get_products"
   get "add_to_collection" => "collections#add_to_collection"
   get 'logout' => "sessions#destroy"
   delete 'logout' => "sessions#destroy"

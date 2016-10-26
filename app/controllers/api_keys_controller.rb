@@ -24,16 +24,11 @@ def update
 end
 
   def destroy
- 
-    	@api_key = ApiKey.find_by_id(params[:id])
-    	   if @api_key.user_id = current_user.id
-      @api_key.destroy
-      flash[:success] = "Key deleted"
-      redirect_to root_url
-    else
-      flash[:warning] = "Something went wrong"
-      redirect_to  root_url
-      end
+
+    @api_key = ApiKey.find_by_id(params[:id])
+   	if @api_key.user_id = current_user.id
+    	@api_key.destroy
+	end
   end
 private
 	def api_key_params

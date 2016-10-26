@@ -29,28 +29,29 @@ $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 });
 
-app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  function($scope, ApiKey, Collection, LineItem, Upload) {
+app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  '$http', function($scope, ApiKey, Collection, LineItem, Upload, $http) {
 
 $scope.api_keys = [];
 
-
     $scope.delete_api_key = function (api_key) {
         ApiKey.$delete("api_keys/" + api_key.id);
-        console.log("deleted" + api_key.id);
         $scope.api_keys.splice($scope.api_keys.indexOf(api_key), 1);
-          ApiKey.query().then(function (results) {
-            $scope.api_keys = results;
-        
-        });
+        setTimeout(function() {
+            ApiKey.query().then(function (results) {
+                $scope.api_keys = results;
+            });
+        },1000)
+     
     };
 
     $scope.delete_line_item = function (line_item) {
        LineItem.$delete("line_items/" + line_item.id);
-        console.log("deleted" + line_item.id);
+        setTimeout(function() {
         $scope.line_items.splice($scope.line_items.indexOf(line_item), 1);
-         Collection.query().then(function (results) {
-        $scope.collections = results;  
-    });
+            Collection.query().then(function (results) {
+            $scope.collections = results;  
+        });
+        },1000)
 
     };
 
@@ -71,14 +72,17 @@ $scope.api_keys = [];
                   },
                  sendFieldsAs: 'json'
               }).progress(function(evt) {
-                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-              }).success(function(data, status, headers, config) {
-                 console.log(data);
-              }); 
-        ApiKey.query().then(function (results) {
+               }).success(function(data, status, headers, config) {
+                 
+              });
+              setTimeout(function(){
+
+                  ApiKey.query().then(function (results) {
             $scope.api_keys = results;
         
         });
+              },100) 
+      
     }
 
     LineItem.query().then(function (results) {
@@ -112,7 +116,12 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
             next_button.style.visibility = "hidden" ;
         }
     });
-    
+        $scope.scrape_products = function() {
+        $http({
+        method: 'POST',
+        url: "get_products"});
+    }
+
     var user_products = 0;
 
     $scope.add_to_collection = function(product, user_id) {
@@ -125,9 +134,8 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 },
                  sendFieldsAs: 'json'
               }).progress(function(evt) {
-                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-              }).success(function(data, status, headers, config) {
-                 console.log(data);
+             }).success(function(data, status, headers, config) {
+             
               }); 
     }
 

@@ -71,7 +71,7 @@ def create
 	 product = current_user.products.build(product_params)
 end
 
-	      def get_products
+	      def get_mens_products
 	      get_type()
 	      # This query is prefomed to create four needed variables.
 	      # Current_page is the First Page we initial query. 

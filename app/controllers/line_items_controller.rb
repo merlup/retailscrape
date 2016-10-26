@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
   end
 
   def index
-   
+  end
   def create
   end
 

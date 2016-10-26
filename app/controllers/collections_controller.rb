@@ -4,13 +4,12 @@ class CollectionsController < ApplicationController
   end
 
   def create
-  	if @collection.save 
-  		redirect back
+  	@collection = Collection.new(params[:collection_params])
+    @line_item = LineItem.new
+   p "$"*65, params[:collection]
+   
   		flash[:success] = "You've added the item to the collection"
-  	else
-  		redirect back
-  		flash[:warning] = "Something went wrong"
-  	end
+      @collection.save 
   end
 
   def show
@@ -56,10 +55,7 @@ end
   def destroy_line_item
     @line_item = LineItem.find_by_id(params[:id])
     @line_item.destroy
-    @collection = Collection.find_by_id(params[:id])
-    @collection.destroy
     flash[:success] = "Item deleted"
-    redirect_to collections_path
   end
 
   private

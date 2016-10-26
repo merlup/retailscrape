@@ -1,22 +1,22 @@
-<br>
-<% @collections.each do |collection| %>
- <%= collection.id %>
- <% if collection.line_items != nil %>
-  <% collection.line_items.each do |product| %>
-  <div>
-  		<%= image_tag product.image %>
-  		<br>
-	  <%= product.brand %>
-	  <br>
-	  <%= product.description %>
-	  <br>
-	  <%= product.price %>
-	  <br>
-	  <%= product.sale_price %>
-	<br>
-	<%= link_to "Remove Item", product, method: :delete, data: { confirm: "You sure?" } %> 
-	</div>
-  <% end %> 
-   <br>
-   <% end %>
- <% end %>
+
+
+<div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
+      <div class="row" >
+       <h1 style="text-align:center;"><%= current_user.user_name %>'s Collection</h1>
+       <div ng-repeat="collection in collections">
+		<div ng-repeat="lineItem in collection.lineItems">
+		
+              <div class="col-xs-6  col-md-2" style="min-height:500px;display:inline-block;">
+                <div><img class="img-responsive"<img ng-src="{{lineItem.image.url}}">
+              {{lineItem.brand}}<br>
+			{{lineItem.description}}<br>
+			{{lineItem.price}}<br>
+			{{lineItem.sale}}<br>
+			{{lineItem.sale_price}}<br>
+               <button type="button" class="btn-xs btn-danger" ng-click="delete_line_item({id: lineItem.id})"> Delete an Item </button></div>
+			
+              </div>
+            </div>
+        </div>
+      </div>

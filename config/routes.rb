@@ -30,8 +30,10 @@ Rails.application.routes.draw do
   get 'log_in' => 'sessions#new'
   post "users/:id" => "users#destroy"
   delete "products" => "products#destroy"
+  delete "collections" => 'collections#destroy'
   delete "line_items/:id" => "collections#destroy_line_item"
-
+  post 'collections' => 'collections#create'
+  post "add_to_collection" => "collections#add_to_collection"
 
   resources :products
   resources :sessions

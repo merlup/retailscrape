@@ -1,6 +1,15 @@
 var app = angular.module("RetailScrape", ['ngAnimate',  'ui.router', 'rails', 'ngFileUpload' ]);
+
 app.factory('Product', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/products', name: 'product'});
+}]);
+
+app.factory('LineItem', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/line_items', name: 'line_item'});
+}]);
+
+app.factory('Collection', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/collections', name: 'collection'});
 }]);
 
 app.factory('ApiKey', ['railsResourceFactory',function(railsResourceFactory){
@@ -14,13 +23,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('collections', { url: 'collections',  views: {'main': { templateUrl: 'collections', controller: 'MainCtrl'}}})
     .state('log_in', { url: 'log_in',  views: {'main': { templateUrl: 'sessions/new', controller: 'MainCtrl'}}})
    .state('log_out', { url: '',  views: {'main': { templateUrl: 'logout', controller: 'MainCtrl'}}})
-   .state('sign_up', { url: 'collections',  views: {'main': { templateUrl: 'users/new', controller: 'MainCtrl'}}})
+   .state('sign_up', { url: 'sign_up',  views: {'main': { templateUrl: 'users/new', controller: 'MainCtrl'}}})
    .state('delete_all', { url: 'products',  views: {'main': { templateUrl: 'destroy_all', controller: 'MainCtrl'}}})
 $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 });
 
-app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Upload', function($scope, ApiKey, Upload) {
+app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  function($scope, ApiKey, Collection, LineItem, Upload) {
 
 $scope.api_keys = [];
 
@@ -34,6 +43,23 @@ $scope.api_keys = [];
         
         });
     };
+
+    $scope.delete_line_item = function (line_item) {
+       LineItem.$delete("line_items/" + line_item.id);
+        console.log("deleted" + line_item.id);
+        $scope.line_items.splice($scope.line_items.indexOf(line_item), 1);
+         Collection.query().then(function (results) {
+        $scope.collections = results;  
+    });
+
+    };
+
+
+    ApiKey.query().then(function (results) {
+        $scope.api_keys = results;
+       
+    });
+
 
     $scope.create_api_key = function(user_id) {
 
@@ -54,16 +80,25 @@ $scope.api_keys = [];
         
         });
     }
-    ApiKey.query().then(function (results) {
-        $scope.api_keys = results;
-       
+
+    LineItem.query().then(function (results) {
+        $scope.line_items = results;  
     });
+
+
+
+
+     Collection.query().then(function (results) {
+        $scope.collections = results;  
+    });
+
+
 
 
 }]);
 
 
-app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) {
+app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "Upload", function($scope, Product, Collection, LineItem, Upload) {
     
     var total_products = 0;
     var back_button = document.getElementById("back");
@@ -80,7 +115,22 @@ app.controller("ProductsCtrl", ['$scope', "Product",  function($scope, Product) 
     
     var user_products = 0;
 
-    
+    $scope.add_to_collection = function(product, user_id) {
+     
+      
+        $scope.upload = Upload.upload({
+                  url: '/add_to_collection', 
+                  fields: {
+                    'product_id' : product.id
+                },
+                 sendFieldsAs: 'json'
+              }).progress(function(evt) {
+                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+              }).success(function(data, status, headers, config) {
+                 console.log(data);
+              }); 
+    }
+
     $scope.get_updates = function() {
         
         var timer = setInterval(function() {

@@ -60,6 +60,7 @@
                 <p style="font-weight:bold;font-size:20px;">{{user_product.brand}}</p> 
                 <p style="font-weight:italic;font-size:20px;"> {{user_product.description}} </p>
                 <p style="font-weight:bold;font-size:15px;">{{user_product.price}} </p>
+                <button type="button" ng-click="add_to_collection( user_product,<%= current_user.id%>)" class="btn btn-success"> Add to Collection </button>
               </div>
             </div>
         </div>

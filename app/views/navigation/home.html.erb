@@ -1,15 +1,15 @@
 
 
-<div class="col-xs-12" style="background-color: rgba(0,0,0,.5);height:600px;
+<div class="col-xs-12" style="margin-top:-20px;background-color: rgba(0,0,0,.5);height:600px;
   background-blend-mode: multiply;background-image:url('https://i.ytimg.com/vi/aMZx2C8YDsU/maxresdefault.jpg');">
 
 	<div class="row" >	
-		<div class="col-xs-12 col-sm-8 col-md-4 col-md-offset-1" style="margin-top:100px;text-align:center;background-color:grey;border:solid;">
+		<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-1" style="margin-top:100px;text-align:center;background-color:grey;border:solid;">
 			<h1 style="color:white;"> Welcome to Retail Scrape </h1>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-md-4 col-md-offset-1" style="background-color:white;border:solid;font-size:20px;">
+		<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-1" style="background-color:white;border:solid;font-size:20px;">
 		<br>
 		<br>
 		<br>
@@ -19,23 +19,23 @@
 		<br>
 		</div>
 
-	</div>
+	
 
-</div>
-
-<div style="text-align:center;">
+<div class="col-xs-12 col-sm-5  col-md-5 col-md-offset-1" style="margin-top:-20px;height:300px;background-color:white;border:solid;">
 	<% if !logged_in? %>
-	<div>
-	  <div style="display:inline-block;">
-		  <h3> Log In </h3>
+	<div style="margin-top:20px;">
+	  <div class="col-sm-5  col-md-5 col-md-offset-1" style="display:inline-block;">
+		  <h3 style="text-align:center;"> Log In </h3>
 		  <%= render template: "sessions/new" %>
 	  </div>
 
 	  
 
-	  <div style="display:inline-block;">
-	  	<h3> Sign Up </h3>
+	  <div class="col-sm-offset-1 col-sm-5 col-md-5 " style="display:inline-block;">
+	  	<h3 style="text-align:center;"> Sign Up </h3>
+	  	
 	  	<%= render template: "users/new" %>
+	  	
 	 </div>
 	</div>
 	 <% else %>
@@ -52,7 +52,12 @@
  	<% end %>
 </div>
 
-<div style="text-align:center">
+
+
+	</div>
+
+</div>
+<div >
 	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
 		<% if !logged_in? || !logged_in? && current_user.api_keys.blank? %>
 			<p> Be sure to have already created your Api Keys </p>

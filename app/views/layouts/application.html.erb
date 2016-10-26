@@ -6,26 +6,25 @@
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-  <body ng-app="RetailScrape" ng-contoller="MainCtrl" ui-view="main" class="view-slide">
-  
-   
-      <div class="container-fluid">
-       <%= render file: "app/views/layouts/_header"  %> 
-         <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
+  <body ng-app="RetailScrape" ng-contoller="MainCtrl"  class="view-slide">
+     <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
        <div class="warning" style="background-color:orange;">
-        <%= flash[:warning] %>
+        WARNING: <%= flash[:warning] %>
         </div>
         <div class="notice" style="background-color:yellow;">
-        <%= flash[:notice] %>
+         NOTICE:<%= flash[:notice] %>
         </div>
         <div class="danger" style="background-color:red;">
-        <%= flash[:danger] %>
+        DANGER: <%= flash[:danger] %>
         </div>
         <div class="success" style="background-color:green;">
-        <%= flash[:success] %>
+        SUCCESS: <%= flash[:success] %>
         </div>
       <% end %>
+   
+      <div ui-view="main">
+       <%= render file: "app/views/layouts/_header"  %> 
     <%= yield %>
-    </div>
+   </div>
   </body>
 </html>

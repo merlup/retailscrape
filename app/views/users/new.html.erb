@@ -1,9 +1,10 @@
 <%= form_for (User.new) do |f| %>
-<%= f.label :Choose_a_username %>
-<%= f.text_field :user_name, placeholder: "User Name"  %>
+	<%= f.label :Choose_a_username %>
+	<%= f.text_field :user_name, placeholder: "User Name" , class: "form-control" %>
+
+	<%= f.label :Password %>
+	<%= f.password_field :password, placeholder: "Password", class: "form-control"  %>
 <br>
-<%= f.label :Password %>
-<%= f.password_field :password, placeholder: "Password"  %>
 <br>
-<%= f.submit %>
+	<%= f.submit "Sign Up", class: "btn btn-primary", style: "text-align:right" %>
 <% end %> 

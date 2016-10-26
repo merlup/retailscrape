@@ -18,7 +18,12 @@ class UsersController < ApplicationController
 	end
 
 	def show 
+		if logged_in? && current_user.id == params[:id]
 		@user = User.find_by_id(params[:id])
+		else
+			flash[:notice] = "Please Log In or Create an Account"
+			redirect_to root_url
+		end
 	end
 
 	def index 

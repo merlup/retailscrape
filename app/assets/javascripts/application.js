@@ -12,7 +12,8 @@
 //
 
 //= require angular
-
+//= require angular-strap
+//= require angular-animate
 //= require angular-ui-router
 //= require angularjs/rails/resource
 //= require angular-resource

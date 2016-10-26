@@ -6,10 +6,10 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'angularjs-rails-resource'
 gem 'angular-ui-router-rails'
 gem 'angularjs-rails'
-
+gem 'rails-angularstrap', '~> 2.2'
 gem 'angular-rails-templates'
 gem 'jsonapi-resources'
-
+gem 'bootstrap-sass', '3.3.6'
 gem 'will_paginate', '~> 3.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
  
 
   root 'navigation#home'
+  get 'home' => 'navigation#home'
   get 'collections' => 'collections#index'
   get 'product_apis' => 'product_api#index'
   get 'destroy_all' => 'products#destroy_all'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
 
 
   resources :products
+  resources :sessions
   resources :collections
   resources :line_items
   resources :dashboard

@@ -1,3 +1,23 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.app.ng-enter {
+	transition:0.75s;
+	opacity:0;
+}
+
+.app.ng-enter-active {
+	opacity:1;
+}
+
+.app.ng-leave{
+	transition:0.75s;
+	opacity:1;
+}
+
+.app.ng-leave-active{
+	opacity:0;
+}

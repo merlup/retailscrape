@@ -5,11 +5,11 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
-
-  <body ng-app="RetailScrape" ng-contoller="MainCtrl">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+  <body ng-app="RetailScrape" ng-contoller="MainCtrl" ui-view="main" class="view-slide">
   
    
-      <div ui-view="main" >
+      <div class="container-fluid">
        <%= render file: "app/views/layouts/_header"  %> 
          <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
        <div class="warning" style="background-color:orange;">

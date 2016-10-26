@@ -118,7 +118,7 @@ def get_type
         end
       end
     end
-  render 'index'
+  return
 end
 
 

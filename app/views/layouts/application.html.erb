@@ -7,6 +7,7 @@
     <%= javascript_include_tag 'application' %>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
   <body ng-app="RetailScrape" ng-contoller="MainCtrl"  class="view-slide">
+   
      <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
        <div class="warning" style="background-color:orange;">
        <br>
@@ -23,7 +24,7 @@
         </div>
       <% end %>
    
-      <div ui-view="main">
+     <div ui-view="main">
        <%= render file: "app/views/layouts/_header"  %> 
     <%= yield %>
     </div>

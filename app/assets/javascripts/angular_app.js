@@ -32,7 +32,8 @@ $locationProvider.html5Mode({ enabled: true, requireBase: false });
 app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  '$http', function($scope, ApiKey, Collection, LineItem, Upload, $http) {
 
 $scope.api_keys = [];
-
+$scope.line_items = [];
+$scope.collections = [];
     $scope.delete_api_key = function (api_key) {
         ApiKey.$delete("api_keys/" + api_key.id);
         $scope.api_keys.splice($scope.api_keys.indexOf(api_key), 1);
@@ -103,7 +104,7 @@ $scope.api_keys = [];
 
 
 app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "Upload", function($scope, Product, Collection, LineItem, Upload) {
-    
+    $scope.collections = [];
     var total_products = 0;
     var back_button = document.getElementById("back");
     var next_button = document.getElementById("next");
@@ -128,15 +129,17 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
      
       
         $scope.upload = Upload.upload({
-                  url: '/add_to_collection', 
-                  fields: {
-                    'product_id' : product.id
-                },
-                 sendFieldsAs: 'json'
-              }).progress(function(evt) {
-             }).success(function(data, status, headers, config) {
-             
-              }); 
+            url: '/add_to_collection', 
+            fields: {
+                'product_id' : product.id
+            },
+             sendFieldsAs: 'json'
+            }).progress(function(evt) {
+            }).success(function(data, status, headers, config) {
+        }); 
+        Collection.query().then(function (results) {
+            $scope.collections = results;  
+        });
     }
 
     $scope.get_updates = function() {

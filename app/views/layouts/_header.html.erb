@@ -7,7 +7,9 @@
     <li><a ui-sref="home">Home </a></li>
      <li><a ui-sref="products">Products </a></li>
       <% if current_user != nil %>
-       <li><a ui-sref="collections">My Collections</a></li>
+       <li><a ui-sref="collections" ng-controler="ProductsCtrl">
+       My Collections
+       </a></li>
         <li> <a ui-sref="log_out">| Log Out (<%= current_user.user_name %>)</a></li>
        
       <% else %>
@@ -18,4 +20,3 @@
       </ul>
       </div>
    </nav>
-  

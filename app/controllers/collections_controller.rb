@@ -3,6 +3,10 @@ class CollectionsController < ApplicationController
   	@collection = Collection.new(params[:collection_params])
   end
 
+  def index
+    @collections = current_user.collections
+  end
+
   def create
   	@collection = Collection.new(params[:collection_params])
     @line_item = LineItem.new

@@ -3,6 +3,8 @@ class LineItemsController < ApplicationController
   	@line_item = LineItem.new(params[:line_item_params])
   end
 
+  def index
+   
   def create
   end
 

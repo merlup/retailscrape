@@ -9,22 +9,25 @@
   <body ng-app="RetailScrape" ng-contoller="MainCtrl"  class="view-slide">
      <% if flash[:warning] || flash[:notice] || flash[:danger] || flash[:success] %>
        <div class="warning" style="background-color:orange;">
-        WARNING: <%= flash[:warning] %>
+       <br>
+         <h3><%= flash[:warning] %>
         </div>
         <div class="notice" style="background-color:yellow;">
-         NOTICE:<%= flash[:notice] %>
+         <%= flash[:notice] %>
         </div>
         <div class="danger" style="background-color:red;">
-        DANGER: <%= flash[:danger] %>
+         <%= flash[:danger] %>
         </div>
         <div class="success" style="background-color:green;">
-        SUCCESS: <%= flash[:success] %>
+         <%= flash[:success] %>
         </div>
       <% end %>
    
       <div ui-view="main">
        <%= render file: "app/views/layouts/_header"  %> 
     <%= yield %>
-   </div>
+    </div>
+
+  
   </body>
 </html>

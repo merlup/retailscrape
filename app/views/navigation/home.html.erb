@@ -1,6 +1,6 @@
 
 
-<div class="col-xs-12" style="margin-top:-20px;background-color: rgba(0,0,0,.5);height:600px;
+<div class="col-xs-12" style="margin-top:-20px;background-color: rgba(0,0,0,.5);height:180%;
   background-blend-mode: multiply;background-image:url('https://i.ytimg.com/vi/aMZx2C8YDsU/maxresdefault.jpg');">
 
 	<div class="row" >	
@@ -13,14 +13,11 @@
 		<br>
 		<br>
 		<br>
-			<p > A place to find fashion from Bloomingdales.com .This app was a sample project built for an interview with Boon & Gable. <span style="font-weight:bold">Merlin</span>.Built with <span style="color:red">Angular</span> & <span style="color:red">Ruby on Rails</span>. <a href="http://github.com/merlup/retailscrape">View the open source.</a> </p>
+			<p > A place to find fashion from Bloomingdales.com .This app was a sample project built for an interview by <span style="font-weight:bold">Merlin</span>. Built with <span style="color:red">Angular</span> & <span style="color:red">Ruby on Rails</span>. <a href="http://github.com/merlup/retailscrape">View the open source.</a> </p>
 		<br>
 		<br>
 		<br>
 		</div>
-
-	
-
 <div class="col-xs-12 col-sm-5  col-md-5 col-md-offset-1" style="margin-top:-20px;height:300px;background-color:white;border:solid;">
 	<% if !logged_in? %>
 	<div style="margin-top:20px;">
@@ -40,46 +37,44 @@
 	</div>
 	 <% else %>
 	 <div>
-	 <% if current_user != nil &&  current_user.api_keys.blank? %>
-		<h3> Start Here! </h3>
-		<p> Create an Api Key for the API</p>
-		<%= render template: "api_keys/new" %>
-		<% end %>
-		<h3> Then Start Scraping Products </h3>
-  		<%= link_to "Get to Scraping", products_path%> 
-  		
-  	</div>
- 	<% end %>
-</div>
-
-
-
-	</div>
-
-</div>
-<div >
-	<h3 style="color:blue"> Access the API (http://api.retailscrape.blackvandal.com) </h3>
-		<% if !logged_in? || !logged_in? && current_user.api_keys.blank? %>
-			<p> Be sure to have already created your Api Keys </p>
-		<% end %>
-	
-	<div>
-		<% if current_user != nil %>
-		<p> Api Keys:  </p>
+		 <div class="col-xs-6" >
+		 
+			<h3> Start Scraping Products </h3>
+	  		<button type="button" class="btn btn-success"><a ui-sref="products"> Find Products </a></button>
+	  	</div>
+	  	<div class="col-xs-6">
+	  		
+			<h3> Create an API Key </h3>
+			<%= render template: "api_keys/new" %>
+			<br>
+			<p> Api Keys:  </p>
+			<div style="height:150px;overflow-y:scroll;">
 			<% current_user.api_keys.each do |api_key| %>
 				<%= api_key.access_token %>
 				
 				 <%= link_to "Destroy", api_key, method: :delete, data: { confirm: "You sure?" } %>
 				 <br> 
 			<% end %>
-			<% if !current_user.api_keys.blank? %>
-		<%= render template: "api_keys/new" %>
-		<% end %>
-		<% end %>
-	</div>
+			</div>
+			
+	  	</div>
+	  </div>
+ 	<% end %>
+
+</div>
+
+</div>
+<br>
+<br>
+ 	<div  class="col-xs-12 col-md-5 col-md-offset-6 "style="background-color:white;border:solid;">
+	<h3 style="color:blue"> Access the API  </h3>
+	<p> (http://api.retailscrape.blackvandal.com)</p>
 	<p> Add the PostMan Chrome Extension to test the public Api </p>
 	<p>  (https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm/related?hl=en)</p>
 </div>
-<br>
+
+</div>
+
+
 
 

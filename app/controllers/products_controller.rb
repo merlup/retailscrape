@@ -16,7 +16,12 @@ class ProductsController < ApplicationController
   end
 
   def show
+    if logged_in? && params[:id] == current_user.id
   	@product = Product.find_by_id(params[:id])
+  else
+    flash[:notice] = "Please Log in or stop doing that"
+    redirect_to root_url
+  end
   end
 
 def get_type

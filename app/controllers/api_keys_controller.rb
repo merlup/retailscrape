@@ -5,6 +5,10 @@ def new
 	@api_key = ApiKey.create
 end
 
+def index
+	@api_keys = current_user.api_keys
+end
+
 def create
 	@api_key = ApiKey.create(params[:api_key_params])
 	@api_key.user_id = current_user.id

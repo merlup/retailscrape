@@ -1,6 +1,10 @@
-var app = angular.module("RetailScrape", ['ngAnimate',  'ui.router', 'rails' ]);
+var app = angular.module("RetailScrape", ['ngAnimate',  'ui.router', 'rails', 'ngFileUpload' ]);
 app.factory('Product', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/products', name: 'product'});
+}]);
+
+app.factory('ApiKey', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/api_keys', name: 'api_key'});
 }]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -16,7 +20,45 @@ $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 });
 
-app.controller("MainCtrl",['$scope' , function($scope) {
+app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Upload', function($scope, ApiKey, Upload) {
+
+$scope.api_keys = [];
+
+
+    $scope.delete_api_key = function (api_key) {
+        ApiKey.$delete("api_keys/" + api_key.id);
+        console.log("deleted" + api_key.id);
+        $scope.api_keys.splice($scope.api_keys.indexOf(api_key), 1);
+          ApiKey.query().then(function (results) {
+            $scope.api_keys = results;
+        
+        });
+    };
+
+    $scope.create_api_key = function(user_id) {
+
+        $scope.upload = Upload.upload({
+                  url: '/api_keys', 
+                  fields: {
+                    'api_key[access_token]' : null,
+                    'api_key[user_id]' : user_id,
+                  },
+                 sendFieldsAs: 'json'
+              }).progress(function(evt) {
+                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+              }).success(function(data, status, headers, config) {
+                 console.log(data);
+              }); 
+        ApiKey.query().then(function (results) {
+            $scope.api_keys = results;
+        
+        });
+    }
+    ApiKey.query().then(function (results) {
+        $scope.api_keys = results;
+       
+    });
+
 
 }]);
 

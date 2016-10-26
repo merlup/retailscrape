@@ -43,6 +43,9 @@ GEM
       sprockets (>= 3.0, < 5)
       tilt
     angular-ui-router-rails (0.2.15)
+    angular_rails_csrf (2.0.0)
+      railties (>= 3, < 5.1)
+    angularjs-file-upload-rails (2.2.0)
     angularjs-rails (1.5.8)
     angularjs-rails-resource (2.0.0)
     arel (7.1.4)
@@ -190,6 +193,8 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates
   angular-ui-router-rails
+  angular_rails_csrf
+  angularjs-file-upload-rails (~> 2.2.0)
   angularjs-rails
   angularjs-rails-resource
   bcrypt (~> 3.1.7)

@@ -118,7 +118,7 @@ def get_type
         end
       end
     end
-  return
+   redirect_to products_path
 end
 
 

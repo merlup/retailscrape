@@ -33,7 +33,6 @@ class ScraperWorker
           @product.description = product.at_css("#prodName").text
           @product.brand = product.at_css("#brandName").text
           @product.original_image_url = product.at_css("img").attr('src')
-          @product.remote_image_url = product.at_css("img").attr('src')
           @product.price = product.at_css(".priceSale").text.strip
             if product.at_css(".prices").text.strip.include?("Sale")
               @product.sale = true

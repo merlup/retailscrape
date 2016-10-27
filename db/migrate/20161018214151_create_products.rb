@@ -7,7 +7,6 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :color
       t.string :type
       t.integer :user_id
-      t.string :image
       t.string :original_image_url
       t.boolean :sale
       t.string :sale_price

@@ -172,7 +172,7 @@ end
 private
 
 	def product_params
-		 params.require(:product).permit(:image, :price, :brand, :description, :sale, :sale_price, :original_image_url, :user_id, :collection_id, :color, :type)
+		 params.require(:product).permit(:price, :brand, :description, :sale, :sale_price, :original_image_url, :user_id, :collection_id, :color, :type)
 	end
 
 end

@@ -25,6 +25,7 @@ gem 'puma', '~> 3.0'
 gem 'angular_rails_csrf'
 gem 'ngannotate-rails'
 gem 'sidekiq'
+gem 'delayed_job_active_record'
 gem 'angularjs-file-upload-rails', '~> 2.2.0'
 group :development, :test do
   gem 'byebug', platform: :mri

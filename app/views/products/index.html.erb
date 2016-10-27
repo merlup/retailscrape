@@ -85,13 +85,14 @@
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
       <div class="row" >
-       <h1 style="text-align:center;"> Found <% if @products.count == nil %> 0 <% else %> <%= @products.count %> <% end %> from Bloomingdales.com </h1>
+       <h1 style="text-align:center;"> Found {{total_number_of_items}} from Bloomingdales.com </h1>
         <div id="products" ng-repeat="user_product in user_products" ng-animate="app"class="app">
               <div class="col-xs-6  col-md-2" style="min-height:500px;display:inline-block;">
-                <div><img class="img-responsive"ng-src="{{user_product.image.image.url}}" ></div>
+                <div><img class="img-responsive" ng-src="{{user_product.originalImageUrl}}" ></div>
                 <p style="font-weight:bold;font-size:20px;">{{user_product.brand}}</p> 
                 <p style="font-weight:italic;font-size:20px;"> {{user_product.description}} </p>
                 <p style="font-weight:bold;font-size:15px;">{{user_product.price}} </p>
+                
                 <button type="button" ng-click="add_to_collection( user_product,<%= current_user.id%>)" class="btn btn-success"> Add to Collection </button>
               </div>
             </div>

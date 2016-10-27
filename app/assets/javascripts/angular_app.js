@@ -167,16 +167,14 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 params: {type: this.type}  
             }).success(function(){
                 console.log("CHARGING UP!!!!")
-                setTimeout(function(){console.log(1)},5000);
-                setTimeout(function(){console.log(2)},4000);
-                setTimeout(function(){console.log(3)},3000);
-                setTimeout(function(){console.log(4)},2000);
-                setTimeout(function(){console.log(5)},1000);
+                setTimeout(function(){console.log(1)},3000);
+                setTimeout(function(){console.log(2)},2000);
+                setTimeout(function(){console.log(3)},1000);
                 setTimeout(function(){
                     console.log("BOOOOOOOOOOM!!!!!!!! NOM NOM NOM");
                     $scope.continue_loop = "true"
                     $scope.get_updates();
-                },5000);
+                },3000);
             }).error(function(response){
                 console.log(response);
             })
@@ -188,17 +186,15 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_womens",
                 params: {type: this.type}  
             }).success(function(){
-                console.log("CHARGING UP!!!!")
-                setTimeout(function(){console.log(1)},5000);
-                setTimeout(function(){console.log(2)},4000);
-                setTimeout(function(){console.log(3)},3000);
-                setTimeout(function(){console.log(4)},2000);
-                setTimeout(function(){console.log(5)},1000);
+                 console.log("CHARGING UP!!!!")
+                setTimeout(function(){console.log(1)},3000);
+                setTimeout(function(){console.log(2)},2000);
+                setTimeout(function(){console.log(3)},1000);
                 setTimeout(function(){
-                    console.log("BAAAAAAAAAAAAAAAAAAAAAAMMMMM!!!!!! NOM NOM NOM");
+                    console.log("BOOOOOOOOOOM!!!!!!!! NOM NOM NOM");
                     $scope.continue_loop = "true"
                     $scope.get_updates();
-                },5000);
+                },3000);
             }).error(function(response){
                 console.log(response);
             })
@@ -237,7 +233,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                     Product.query().then(function (results) {
                         
                         $scope.user_products = results;
-
+                        $scope.total_number_of_items = results.length;
                         console.log( "Continue Loop =", $scope.continue_loop, "Current Count =", results.length );
                       
                             if ($scope.current_count > total_products) {

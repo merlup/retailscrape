@@ -23,8 +23,9 @@ gem 'jbuilder', '~> 2.5'
 gem "puma_worker_killer"
 gem 'puma', '~> 3.0'
 gem 'angular_rails_csrf'
- gem 'ngannotate-rails'
- gem 'angularjs-file-upload-rails', '~> 2.2.0'
+gem 'ngannotate-rails'
+gem 'sidekiq'
+gem 'angularjs-file-upload-rails', '~> 2.2.0'
 group :development, :test do
   gem 'byebug', platform: :mri
 end

@@ -103,7 +103,7 @@ $scope.collections = [];
 }]);
 
 
-app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "Upload", function($scope, Product, Collection, LineItem, Upload) {
+app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "Upload", "$http", function($scope, Product, Collection, LineItem, Upload, $http) {
     $scope.collections = [];
     var total_products = 0;
     var back_button = document.getElementById("back");
@@ -122,6 +122,16 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         method: 'POST',
         url: "get_products"});
     }
+
+    var get_type = ""
+    $scope.selectedType = function (value) {  
+
+        get_type = value
+        console.log(get_type)
+
+    };
+
+  
 
     var user_products = 0;
 
@@ -142,12 +152,37 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         });
     }
 
+   
+
+        $scope.get_products_men = function() {
+            $http({
+                method: 'GET',
+                url: "get_products_mens",
+                params: {type: this.type}  
+            }).success(function(){
+                console.log("stopping");
+            }).error(function(response){
+                console.log(response);
+            })
+        }
+
+         $scope.get_products_women = function() {
+            $http({
+                method: 'GET',
+                url: "get_products_womens",
+                params: {type: this.type}  
+            }).then(function successCallback(response) {
+                console.log("stopping")
+            });
+        }
+        $scope.product_total = " ",
     $scope.get_updates = function() {
         
-        var timer = setInterval(function() {
+         var start_update = setInterval(function() {
             Product.query().then(function (results) {
                 $scope.user_products = results;
                 $scope.current_count = results.length
+                $scope.product_total = results.length
                 user_products = results.length;  
                 if ($scope.current_count > total_products) {
                     if (results.length < 30) {
@@ -159,12 +194,18 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 }
             });
         },200)
+
+
+
+
+
+
+
         
     }
 
     var counter = 0; 
-
-    $scope.nextPage = function(product_total) {
+ $scope.nextPage = function(product_total) {
        counter += 1 ; 
         var page_max =  Math.round((product_total) / 30) - 1;
         $scope.products_per_page = Product.query({page: counter + 1}).then(function (results) {

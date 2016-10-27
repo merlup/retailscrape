@@ -1,7 +1,7 @@
 class ScraperWorker
   include Sidekiq::Worker
   require 'nokogiri'
-  sidekiq_options
+  sidekiq_options queue: 'critical'
    sidekiq_options retry: false
 
   def perform(selector,doc,model_type,model_id,model_section,current_user_id)

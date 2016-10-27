@@ -140,9 +140,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
       
         $scope.upload = Upload.upload({
             url: '/add_to_collection', 
-            fields: {
-                'product_id' : product.id
-            },
+            fields: {'product_id' : product.id},
              sendFieldsAs: 'json'
             }).progress(function(evt) {
             }).success(function(data, status, headers, config) {
@@ -152,6 +150,14 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         });
     }
 
+    $scope.delete_products = function() {
+        $http({method: 'GET',url: '/destroy_all'
+        }).success(function(){
+            Product.query().then(function(results){
+                $scope.user_products = results;
+            });
+        });
+    }
    
 
         $scope.get_products_men = function() {
@@ -160,7 +166,17 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_mens",
                 params: {type: this.type}  
             }).success(function(){
-                console.log("stopping");
+                console.log("CHARGING UP!!!!")
+                setTimeout(function(){console.log(1)},5000);
+                setTimeout(function(){console.log(2)},4000);
+                setTimeout(function(){console.log(3)},3000);
+                setTimeout(function(){console.log(4)},2000);
+                setTimeout(function(){console.log(5)},1000);
+                setTimeout(function(){
+                    console.log("BOOOOOOOOOOM!!!!!!!! NOM NOM NOM");
+                    $scope.continue_loop = "true"
+                    $scope.get_updates();
+                },5000);
             }).error(function(response){
                 console.log(response);
             })
@@ -171,38 +187,92 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 method: 'GET',
                 url: "get_products_womens",
                 params: {type: this.type}  
-            }).then(function successCallback(response) {
-                console.log("stopping")
-            });
+            }).success(function(){
+                console.log("CHARGING UP!!!!")
+                setTimeout(function(){console.log(1)},5000);
+                setTimeout(function(){console.log(2)},4000);
+                setTimeout(function(){console.log(3)},3000);
+                setTimeout(function(){console.log(4)},2000);
+                setTimeout(function(){console.log(5)},1000);
+                setTimeout(function(){
+                    console.log("BAAAAAAAAAAAAAAAAAAAAAAMMMMM!!!!!! NOM NOM NOM");
+                    $scope.continue_loop = "true"
+                    $scope.get_updates();
+                },5000);
+            }).error(function(response){
+                console.log(response);
+            })
         }
-        $scope.product_total = " ",
-    $scope.get_updates = function() {
-        
-        //  var start_update = setInterval(function() {
-        //     Product.query().then(function (results) {
-        //         $scope.user_products = results;
-        //         $scope.current_count = results.length
-        //         $scope.product_total = results.length
-        //         user_products = results.length;  
-        //         if ($scope.current_count > total_products) {
-        //             if (results.length < 30) {
-        //                 next_button.style.visibility = "hidden" ;
-        //             }
-        //             else {
-        //                 next_button.style.visibility = "visible" ;
-        //             }
-        //         }
-        //     });
-        // },200)
 
 
+   $scope.get_updates = function() {
+        console.log($scope.continue_loop,"Starting Update" );
+
+        if ( $scope.continue_loop == "true") {
+            console.log("Continue with the loop = ", $scope.continue_loop );
+          
+            var start_update = setInterval(function() {
+                
+                console.log($scope.continue_loop,"Starting Interval" );
 
 
+                 setInterval(function(){
+                             Product.query().then(function (results) {
+                    $scope.user_products = results
+                    $scope.current_count = results.length 
+                    
+                });
+                        },500)
+              
 
+                console.log("about to check last vs current", $scope.last_added, $scope.current_count)
+                if($scope.last_added >= $scope.current_count) {
+                    $scope.continue_loop = "false"
+                } else {
 
+                    $scope.continue_loop = "true"
+                }
 
-        
+                if ($scope.continue_loop == "true" ) {
+                    Product.query().then(function (results) {
+                        
+                        $scope.user_products = results;
+
+                        console.log( "Continue Loop =", $scope.continue_loop, "Current Count =", results.length );
+                      
+                            if ($scope.current_count > total_products) {
+                                
+                                if (results.length < 30) {
+                                    next_button.style.visibility = "hidden" ;
+                                }
+                                else {
+                                    next_button.style.visibility = "visible" ;
+                                }
+                            }
+                        setInterval(function(){
+                            $scope.last_added = results.length
+                        },10000) 
+                    })
+
+                     
+
+                
+                
+                }
+                
+                else {
+                     $scope.last_added = 0
+                    clearInterval(start_update);
+                }
+                  
+               
+                
+            },2000)
+        }
+
     }
+        
+   
 
     var counter = 0; 
  $scope.nextPage = function(product_total) {

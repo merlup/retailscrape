@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
       if current_user.products.length <= 0
         @products = []
       else
-        @products = current_user.products.order('created_at DESC').paginate( page: params[:page])
+        @products = current_user.products.order('created_at DESC')
       end
     end
   end

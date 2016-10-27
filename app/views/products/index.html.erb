@@ -38,7 +38,7 @@
               </select>
               </div>
 
-            <button ng-click="get_updates(); get_products_men()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger"> <a ui-sref="delete_all"> Delete Search </a>  </button>
+            <button ng-click="get_products_men()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger" ng-click="delete_products(<%= current_user.id %>,product.id)"> Delete Search </a>  </button>
               
           </form>
           
@@ -60,7 +60,7 @@
               </select>
               </div>
           
-            <button ng-click="get_updates(); get_products_women()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger"> <a ui-sref="delete_all"> Delete Search </a>  </button>
+                <button ng-click="get_products_men()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger" ng-click="delete_products()"> Delete Search </a>  </button>
               
           </form>
           

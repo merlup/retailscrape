@@ -45,6 +45,7 @@ $scope.collections = [];
      
     };
 
+
     $scope.delete_line_item = function (line_item) {
        LineItem.$delete("line_items/" + line_item.id);
         setTimeout(function() {
@@ -166,15 +167,8 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_mens",
                 params: {type: this.type}  
             }).success(function(){
-                console.log("CHARGING UP!!!!")
-                setTimeout(function(){console.log(1)},3000);
-                setTimeout(function(){console.log(2)},2000);
-                setTimeout(function(){console.log(3)},1000);
-                setTimeout(function(){
-                    console.log("BOOOOOOOOOOM!!!!!!!! NOM NOM NOM");
-                    $scope.continue_loop = "true"
-                    $scope.get_updates();
-                },3000);
+                $scope.continue_loop = "true"
+                $scope.get_updates();
             }).error(function(response){
                 console.log(response);
             })
@@ -186,15 +180,8 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_womens",
                 params: {type: this.type}  
             }).success(function(){
-                 console.log("CHARGING UP!!!!")
-                setTimeout(function(){console.log(1)},3000);
-                setTimeout(function(){console.log(2)},2000);
-                setTimeout(function(){console.log(3)},1000);
-                setTimeout(function(){
-                    console.log("BOOOOOOOOOOM!!!!!!!! NOM NOM NOM");
-                    $scope.continue_loop = "true"
-                    $scope.get_updates();
-                },3000);
+                $scope.continue_loop = "true"
+                $scope.get_updates();
             }).error(function(response){
                 console.log(response);
             })

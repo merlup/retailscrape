@@ -27,7 +27,7 @@ def create_line_item
     @line_item.description = @product.description
     @line_item.sale = @product.sale
     @line_item.sale_price = @product.sale_price
-    @line_item.image = @product.image
+    @line_item.remote_image_url = @product.original_image_url
     @line_item.save
 end
 

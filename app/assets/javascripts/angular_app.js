@@ -178,22 +178,22 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         $scope.product_total = " ",
     $scope.get_updates = function() {
         
-         var start_update = setInterval(function() {
-            Product.query().then(function (results) {
-                $scope.user_products = results;
-                $scope.current_count = results.length
-                $scope.product_total = results.length
-                user_products = results.length;  
-                if ($scope.current_count > total_products) {
-                    if (results.length < 30) {
-                        next_button.style.visibility = "hidden" ;
-                    }
-                    else {
-                        next_button.style.visibility = "visible" ;
-                    }
-                }
-            });
-        },200)
+        //  var start_update = setInterval(function() {
+        //     Product.query().then(function (results) {
+        //         $scope.user_products = results;
+        //         $scope.current_count = results.length
+        //         $scope.product_total = results.length
+        //         user_products = results.length;  
+        //         if ($scope.current_count > total_products) {
+        //             if (results.length < 30) {
+        //                 next_button.style.visibility = "hidden" ;
+        //             }
+        //             else {
+        //                 next_button.style.visibility = "visible" ;
+        //             }
+        //         }
+        //     });
+        // },200)
 
 
 

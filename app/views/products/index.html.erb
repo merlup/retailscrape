@@ -73,11 +73,8 @@
 
     <div style="text-align:center;">
       <div >
-        <button style="display:inline-block;visibility:hidden;"  class="btn-sm btn-primary" id="back" ng-click="backPage(<%= current_user.products.length%>)" type="button">Back page</button>
-          <div style="margin-left:30px;margin-right:30px;display:inline-block;visibility:hidden;" id="pages" >
-            {{counter}} of {{page_max}}
-          </div>
-          <button style="display:inline-block;"class="btn-sm btn-primary" id="next" ng-click="nextPage(<%= current_user.products.length%>)" type="button">Next page</button>
+    <dir-pagination-controls></dir-pagination-controls><br>
+<label><input ng-model="searchText" class="form-control" placeholder="Search:"></label>
       </div>
       </div>
     <br>
@@ -85,8 +82,8 @@
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
       <div class="row" >
-       <h1 style="text-align:center;"> Found {{total_number_of_items}} from Bloomingdales.com </h1>
-        <div id="products" ng-repeat="user_product in user_products" ng-animate="app"class="app">
+       <h1 style="text-align:center;"> Found {{counter || user_products.length}} from Bloomingdales.com </h1>
+        <div id="products" dir-paginate="user_product in user_products| filter:searchText | itemsPerPage: 29" ng-animate="app" class="app">
               <div class="col-xs-6  col-md-2" style="min-height:500px;display:inline-block;">
                 <div><img class="img-responsive" ng-src="{{user_product.originalImageUrl}}" ></div>
                 <p style="font-weight:bold;font-size:20px;">{{user_product.brand}}</p> 

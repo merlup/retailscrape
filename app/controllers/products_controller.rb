@@ -6,8 +6,9 @@ class ProductsController < ApplicationController
       if current_user.products.length <= 0
         @products = []
       else
-        @products = current_user.products.order('created_at DESC')
-      end
+        @products = current_user.products
+
+        end
     end
   end
 
@@ -139,15 +140,15 @@ def get_type
 
   def get_products_mens
     get_type()
-    @doc = Nokogiri::HTML(open("http://www1.bloomingdales.com/shop/#{@model_section}/#{@model_type}/Pageindex/1?id=#{@model_id}"))
-    ScraperWorker.perform_async(@selector,@doc,@model_type,@model_id,@model_section,current_user.id)
+  
+    ScraperWorker.perform_async(@selector,@model_type,@model_id,@model_section,current_user.id)
   render :nothing => true
   end
 
 def get_products_womens
    get_type()
-    @doc = Nokogiri::HTML(open("http://www1.bloomingdales.com/shop/#{@model_section}/#{@model_type}/Pageindex/1?id=#{@model_id}"))
-    ScraperWorker.perform_async(@selector,@doc,@model_type,@model_id,@model_section,current_user.id)
+
+    ScraperWorker.perform_async(@selector,@model_type,@model_id,@model_section,current_user.id)
 render :nothing => true
 end
 

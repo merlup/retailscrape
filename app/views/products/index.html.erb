@@ -1,4 +1,4 @@
-
+<%= cache do %>
 <% if !logged_in? %>
   <div class="col-xs-12"  >
     <h2 style="text-align:center;"> To get products use the App please sign up. </h2>
@@ -25,7 +25,7 @@
           <div class="col-xs-12 col-md-8">
             <form>
               <div class="col-xs-4">
-               <select ng-model="type"  ng-change="selectedType(type)">
+               <select ng-model="type"  ng-change="selectedType(type)" class="form-control">
                 <option value="jeans">Jeans</option>
                 <option value="coats-jackets">Coats & Jackets</option>
                 <option value="suits-tux"> Suits & Tux</option>
@@ -36,9 +36,14 @@
                 <option value="bags">Bags</option>
                 <option value="watches">Watches</option>
               </select>
+              <select ng-model="store" class="form-control">
+              <option value="Macys">Macys </option>
+                <option value="Bloomingdales">Bloomingdales</option>
+              </select>
+                <button type="button" class="btn btn-danger" ng-click="delete_products()"> Delete Search </a>  </button>
               </div>
 
-            <button ng-click="get_products_men()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger" ng-click="delete_products(<%= current_user.id %>,product.id)"> Delete Search </a>  </button>
+            <button ng-click="get_products_men()" type="button" class="btn btn-success";">Get Mens</button>
               
           </form>
           
@@ -49,7 +54,7 @@
           <div class="col-xs-12 col-md-8">
             <form>
               <div class="col-xs-4">
-                <select ng-model="type"  ng-change="selectedType(type)">
+                <select ng-model="type"  ng-change="selectedType(type)" class="form-control">
                 <option value="dresses">dresses</option>
                 <option value="coats">Coats</option>
                 <option value="womens-jeans"> Womens & Jeans</option>
@@ -60,7 +65,7 @@
               </select>
               </div>
           
-                <button ng-click="get_products_men()" type="button" class="btn btn-success";">Submit</button>  <button type="button" class="btn btn-danger" ng-click="delete_products()"> Delete Search </a>  </button>
+                <button ng-click="get_products_women()" type="button" class="btn btn-success";>Get Womens</button>
               
           </form>
           
@@ -85,8 +90,9 @@
        <h1 style="text-align:center;"> Found {{counter || user_products.length}} from Bloomingdales.com </h1>
         <div id="products" dir-paginate="user_product in user_products| filter:searchText | itemsPerPage: 29" ng-animate="app" class="app">
               <div class="col-xs-6  col-md-2" style="min-height:500px;display:inline-block;">
-                <div><img class="img-responsive" ng-src="{{user_product.originalImageUrl}}" ></div>
-                <p style="font-weight:bold;font-size:20px;">{{user_product.brand}}</p> 
+                <div><img class="img-responsive" data-ng-src="{{user_product.originalImageUrl}}"></div>
+                <p style="font-weight:bold;font-size:20px;">
+                {{user_product.brand}}</p> 
                 <p style="font-weight:italic;font-size:20px;"> {{user_product.description}} </p>
                 <p style="font-weight:bold;font-size:15px;">{{user_product.price}} </p>
                 
@@ -98,4 +104,5 @@
     </div>
   </div>
 </div>
+<% end %>
 <% end %>

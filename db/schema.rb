@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20161027001704) do
     t.boolean  "sale"
     t.string   "sale_price"
     t.integer  "collection_id"
-    t.string   "image"
+    t.text   "image"
     t.string   "original_image_url"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_products_on_user_id"

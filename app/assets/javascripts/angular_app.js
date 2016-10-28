@@ -1,4 +1,4 @@
-var app = angular.module("RetailScrape", ['ngAnimate', 'angularUtils.directives.dirPagination', 'ui.router', 'rails', 'ngFileUpload' ]);
+var app = angular.module("RetailScrape", ['ngAnimate', 'rails-template-cache', 'angularUtils.directives.dirPagination', 'ui.router', 'rails', 'ngFileUpload' ]);
 
 app.factory('Product', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/products', name: 'product'});
@@ -152,7 +152,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
             $http({
                 method: 'GET',
                 url: "get_products_mens",
-                params: {type: this.type}  
+                params: {type: this.type, store: this.store}  
             }).success(function(){
             $scope.get_updates();  
             }).error(function(response){
@@ -165,7 +165,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
             $http({
                 method: 'GET',
                 url: "get_products_womens",
-                params: {type: this.type}  
+                params: {type: this.type, store: this.store}  
             }).success(function(){
                 $scope.get_updates();
             }).error(function(response){

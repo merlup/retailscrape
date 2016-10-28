@@ -2,7 +2,7 @@ source 'https://rubygems.org'
      ruby '2.3.0' 
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-
+gem "rails-template-cache"
 gem 'angularjs-rails-resource'
 gem 'angular-ui-router-rails'
 gem 'angularjs-rails'

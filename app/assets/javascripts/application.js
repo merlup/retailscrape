@@ -12,6 +12,7 @@
 //
 
 //= require angular
+//= require rails-template-cache/rails-template-cache
 //= require angular-strap
 //= require angular-animate
 //= require angular-ui-router

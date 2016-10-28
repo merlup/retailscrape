@@ -15,8 +15,8 @@ class ScraperWorker
       # Number of Pages is needed to know how many pages we should have parsed
       doc.css(selector).each do |result|
         @first_page = (result.css(".currentPage").text[-1]).to_i
-        @total_items = result.css('#productCount').text.strip
-        @total_number = @total_items.scan(/\d/).join('')
+        total_items = result.css('#productCount').text.strip
+        @total_number = total_items.scan(/\d/).join('')
         @number_of_pages = (@total_number.to_f / 90).round
       end 
     while item_count <= @total_number.to_f

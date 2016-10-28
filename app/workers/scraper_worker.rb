@@ -35,8 +35,9 @@ class ScraperWorker
             end
           @product.save
           @item_count = @item_count + 1
+          @next_page = @next_page + 1
         end
-         @next_page = @next_page + 1
+         
       end
       p "Pringint", Product.all.length, current_user.products.length
     end

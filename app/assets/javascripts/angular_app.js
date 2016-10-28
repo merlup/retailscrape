@@ -149,12 +149,13 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
    
 
         $scope.get_products_men = function() {
+            $scope.get_updates(); 
             $http({
                 method: 'GET',
                 url: "get_products_mens",
                 params: {type: this.type, store: this.store}  
             }).success(function(){
-            $scope.get_updates();  
+             
             }).error(function(response){
                 console.log(response);
                
@@ -162,6 +163,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         }
 
          $scope.get_products_women = function() {
+            $scope.get_updates(); 
             $http({
                 method: 'GET',
                 url: "get_products_womens",

@@ -100,7 +100,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
     var back_button = document.getElementById("back");
     var next_button = document.getElementById("next");
     var page_index = document.getElementById("pages");
-    Product.query({ id: 'id' }).then(function (results) {
+    Product.query().then(function (results) {
         $scope.user_products = results;  
         $scope.current_count = $scope.user_products.length 
         total_products = $scope.user_products.length

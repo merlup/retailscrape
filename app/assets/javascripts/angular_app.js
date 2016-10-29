@@ -31,22 +31,6 @@ $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  '$http', function($scope, ApiKey, Collection, LineItem, Upload, $http) {
 
-$scope.api_keys = [];
-$scope.line_items = [];
-$scope.collections = [];
-
-
-
-    $scope.delete_line_item = function (line_item) {
-       LineItem.$delete("line_items/" + line_item.id);
-        setTimeout(function() {
-        $scope.line_items.splice($scope.line_items.indexOf(line_item), 1);
-            Collection.query().then(function (results) {
-            $scope.collections = results;  
-        });
-        },500)
-
-    };
 
 
 
@@ -96,7 +80,7 @@ $scope.unhide_menu = function() {
       
     }
 
-
+$scope.api_keys = [];
 
 
         ApiKey.query().then(function (results) {
@@ -112,11 +96,29 @@ $scope.unhide_menu = function() {
         });
     }]);
 
-    app.controller('Collection',  ['$scope', function($scope, Collection){
+    app.controller('Collection',  ['$scope', 'Collection', 'LineItem', function($scope, Collection, LineItem){
+
+
+        $scope.line_items = [];
+        $scope.collections = [];
+           LineItem.query().then(function (results) {
+            $scope.line_items = results;  
+        });
 
          Collection.query().then(function (results) {
             $scope.collections = results;  
         });
+
+    $scope.delete_line_item = function (line_item) {
+       LineItem.$delete("line_items/" + line_item.id);
+        setTimeout(function() {
+        $scope.line_items.splice($scope.line_items.indexOf(line_item), 1);
+            Collection.query().then(function (results) {
+            $scope.collections = results;  
+        });
+        },500)
+
+    };
 
     }]);
 

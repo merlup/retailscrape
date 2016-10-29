@@ -1,10 +1,14 @@
 class ProductsController < ApplicationController
 
   def index
+    if logged_in?
      @skip_header = true
     if current_user != nil
         @products = current_user.products
     end
+  else
+    redirect_to root_url
+  end
   end
 
   def new

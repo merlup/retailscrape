@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     if current_user != nil
       @skip_header = true
       if current_user.products.length <= 0
-        @products = []
+        return
       else
         @products = current_user.products
 
@@ -440,7 +440,7 @@ def get_products_womens
                 @product.sale_price = product.at_css(".priceSale").text.strip
               end
             @product.save
-           
+
             item_count = item_count + 1
             next_page = next_page + 1
           end

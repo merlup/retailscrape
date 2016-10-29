@@ -4,13 +4,7 @@ class CollectionsController < ApplicationController
   end
 
   def index
-    if current_user != nil 
     @collections = current_user.collections
-    render json: @collections
-  else
-    return
-   
-  end
   end
 
   def create
@@ -56,13 +50,9 @@ end
   end
 
   def index
-    if current_user != nil
   	@collections = current_user.collections
   	@collection = Collection.find_by_id(params[:id])
     @line_items = LineItem.all
-    else
-    return
-  end
   end
 
 

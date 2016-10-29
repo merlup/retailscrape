@@ -6,13 +6,7 @@ def new
 end
 
 def index
-	if current_user != nil
 	@api_keys = current_user.api_keys
-	render json: @api_keys
-	else
-	return
-	
-end
 end
 
 def create

@@ -1,14 +1,9 @@
 class ProductsController < ApplicationController
 
   def index
+     @skip_header = true
     if current_user != nil
-      @skip_header = true
-      if current_user.products.length <= 0
-        @products = []
-      else
         @products = current_user.products
-
-        end
     end
   end
 
@@ -346,7 +341,6 @@ def get_type
                 @product.sale_price = product.at_css(".priceSale").text.strip
               end
             @product.save
- debugger
             item_count = item_count + 1
             next_page = next_page + 1
           end
@@ -440,7 +434,7 @@ def get_products_womens
                 @product.sale_price = product.at_css(".priceSale").text.strip
               end
             @product.save
-           
+
             item_count = item_count + 1
             next_page = next_page + 1
           end

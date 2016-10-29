@@ -12,8 +12,7 @@ class CollectionsController < ApplicationController
   def create
   	@collection = Collection.new(params[:collection_params])
     @line_item = LineItem.new
-   p "$"*65, params[:collection]
-   
+
   		flash[:success] = "You've added the item to the collection"
       @collection.save 
   end

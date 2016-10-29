@@ -1,14 +1,13 @@
 class ApiKeysController < ApplicationController
 
 def new
-	@user = current_user
 	@api_key = ApiKey.create
 end
 
 def index
 	if current_user != nil
 	@api_keys = current_user.api_keys
-end
+	end
 end
 
 def create

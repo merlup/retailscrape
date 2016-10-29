@@ -17,12 +17,12 @@
 <div>
   <div >
     <div ng-controller="ProductsCtrl"  class="col-xs-12">
-      <h1>Pick your Product! </h1>
+      <h3>Pick your Product! </h3>
       <br>
       <div class="row">
       <div class="col-xs-6 col-md-4">
-        <h3> Get Mens Items From Bloomingdales.com </h3>
-          <div class="col-xs-12 col-md-12">
+        <p> Get Mens Items From Bloomingdales.com </p>
+          <div class="row">
             <form>
               <div class="col-xs-12 col-sm-12 col-md-8">
                <select ng-model="type"  ng-change="selectedType(type)" class="form-control">
@@ -40,18 +40,14 @@
 
             
                 </div>
-
-              
-            <button ng-click="get_products_men()" type="button" class="btn btn-success";">Get Mens</button>
-              
           </form>
 
           
           </div>
       </div>
     <div class="col-xs-6 col-md-4">
-        <h3> Get Womens Items From Bloomingdales.com </h3>
-          <div class="col-xs-12 col-md-12">
+        <p> Get Womens Items From Bloomingdales.com </p>
+          <div class="row">
             <form>
               <div class="col-xs-12 col-sm-12 col-md-8">
                 <select ng-model="type"  ng-change="selectedType(type)" class="form-control">
@@ -66,30 +62,33 @@
               </select>
               </div>
           
-                <button ng-click="get_products_women()" type="button" class="btn btn-success";>Get Womens</button>
-              
+            
           </form>
           
           </div>
       </div>
       
-    <br>
-    <br>
-    <br>
-    <div class="col-xs-4 col-sm-4 col-md-2">
+    
+    <div class="col-xs-6 col-sm-6  col-md-2">
+     <label>* Macy's in progress (Mens Jeans is the only working selection from Macys)</label>
             <select ng-model="store" class="form-control">
-              
                <option disabled selected value> -- Select A Store -- </option>
                 <option value="Bloomingdales">Bloomingdales</option>
                 <option value="Macys">Macys </option> 
               </select>
-              <label>* Macy's in progress (Mens Jeans is the only working selection)</label>
+
+             
     </div>  
-    <button type="button" class="btn btn-danger col-xs-4 col-sm-1" ng-click="delete_products()"  > Delete Query </a></button>     
+    <br>
+    <br>
+     <div style="text-align:center;">
+              <button ng-click="get_products()" type="button" class="btn btn-success";>Get Product</button>
+              </div>
     <div style="text-align:center;">
       <div class="col-xs-12">
     <dir-pagination-controls></dir-pagination-controls>
             <br>
+              <button type="button" class="btn btn-danger col-xs-4 col-sm-1" ng-click="delete_products()"  > Delete Query </a></button>    
 <label><input ng-model="searchText" class="form-control col-xs-4" placeholder="Search:" ></label>
 
 <br>

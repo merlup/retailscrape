@@ -23,4 +23,6 @@
 //= require jquery_ujs
 //= require angular_app
 //= require ng-file-upload-all
+
+
 //= require_tree .

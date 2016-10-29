@@ -1,8 +1,8 @@
 
 
-<div class="row">
+<div class="row" ng-controller="Collection ">
       <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
-      <div class="row" >
+      <div class="row" ng-controller="LineItem">
        <h1 style="text-align:center;"><%= current_user.user_name %>'s Collection</h1>
        <div ng-repeat="collection in collections">
 		<div ng-repeat="lineItem in collection.lineItems">

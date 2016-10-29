@@ -80,7 +80,6 @@ class ScraperWorker
       while item_count <= @total_number.to_f
        doc.css(selector).each do |result|
           result.css(".borderless").each do |product|
-            
             @product = Product.new
             @product.user_id =  owner_id
             @product.description = product.at_css(".shortDescription").text

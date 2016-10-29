@@ -34,16 +34,7 @@ app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Uplo
 $scope.api_keys = [];
 $scope.line_items = [];
 $scope.collections = [];
-    $scope.delete_api_key = function (api_key) {
-        ApiKey.$delete("api_keys/" + api_key.id);
-        $scope.api_keys.splice($scope.api_keys.indexOf(api_key), 1);
-        setTimeout(function() {
-            ApiKey.query().then(function (results) {
-                $scope.api_keys = results;
-            });
-        },500)
-     
-    };
+
 
 
     $scope.delete_line_item = function (line_item) {
@@ -58,9 +49,7 @@ $scope.collections = [];
     };
 
 
-    ApiKey.query().then(function (results) {
-        $scope.api_keys = results;
-    });
+
 $scope.unhide_menu = function() {
    var toggle = document.getElementById("keys");
    if (toggle.style.visibility == "hidden") {
@@ -69,6 +58,26 @@ $scope.unhide_menu = function() {
     toggle.style.visibility = "hidden"
    }
 }
+
+
+
+}]);
+
+
+
+    app.controller('ApiKey',['$scope', 'ApiKey', 'Upload', function($scope, ApiKey, Upload){
+
+    $scope.delete_api_key = function (api_key) {
+        ApiKey.$delete("api_keys/" + api_key.id);
+        $scope.api_keys.splice($scope.api_keys.indexOf(api_key), 1);
+      
+              ApiKey.query().then(function (results) {
+                $scope.api_keys = results;
+            });
+       
+     
+     
+    };
 
     $scope.create_api_key = function(user_id) {
         $scope.upload = Upload.upload({
@@ -87,18 +96,29 @@ $scope.unhide_menu = function() {
       
     }
 
-    LineItem.query().then(function (results) {
-        $scope.line_items = results;  
-    });
-
-     Collection.query().then(function (results) {
-        $scope.collections = results;  
-    });
 
 
 
+        ApiKey.query().then(function (results) {
+            $scope.api_keys = results;
+        });
 
-}]);
+    }]);
+
+    
+    app.controller('LineItem',['$scope', 'LineItem', function($scope, LineItem){
+        LineItem.query().then(function (results) {
+            $scope.line_items = results;  
+        });
+    }]);
+
+    app.controller('Collection',  ['$scope', function($scope, Collection){
+
+         Collection.query().then(function (results) {
+            $scope.collections = results;  
+        });
+
+    }]);
 
 
 app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "Upload", "$http", function($scope, Product, Collection, LineItem, Upload, $http) {
@@ -107,6 +127,7 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
     var back_button = document.getElementById("back");
     var next_button = document.getElementById("next");
     var page_index = document.getElementById("pages");
+
     Product.query().then(function (results) {
         $scope.user_products = results;  
         $scope.current_count = $scope.user_products.length 
@@ -155,11 +176,11 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
     }
    
 
-        $scope.get_products_men = function() {
+        $scope.get_products = function() {
             $scope.get_updates(); 
             $http({
                 method: 'GET',
-                url: "get_products_mens",
+                url: "get_products",
                 params: {type: this.type, store: this.store}  
             }).success(function(){
                setTimeout(function(){
@@ -169,25 +190,6 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
               
             }).error(function(response){
                 setTimeout(function(){
-                clearInterval(ping_products );
-                 console.log("Stoppping")
-            },2000)
-            })
-        }
-
-         $scope.get_products_women = function() {
-            $scope.get_updates(); 
-            $http({
-                method: 'GET',
-                url: "get_products_womens",
-                params: {type: this.type, store: this.store}  
-            }).success(function(){
-                setTimeout(function(){
-                clearInterval(ping_products );
-                 console.log("Stoppping")
-            },2000)
-            }).error(function(response){
-                 setTimeout(function(){
                 clearInterval(ping_products );
                  console.log("Stoppping")
             },2000)

@@ -32,10 +32,10 @@ $locationProvider.html5Mode({ enabled: true, requireBase: false });
 app.controller("MainCtrl" ,['$scope', "ApiKey" , 'Collection', 'LineItem', 'Upload',  '$http', function($scope, ApiKey, Collection, LineItem, Upload, $http) {
 
 
-
+var api_key_menu =  document.getElementById("api_key_menu");
 
 $scope.unhide_menu = function() {
-   var toggle = document.getElementById("keys");
+   var toggle = document.getElementById('api_key_menu');
    if (toggle.style.visibility == "hidden") {
     toggle.style.visibility = "visible"
    } else {
@@ -177,8 +177,19 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
         });
     }
    
+var search_button =  document.getElementById("get_products_button");
+
+$scope.unhide_menu = function(element) {
+   var toggle = element;
+   if (toggle.style.visibility == "hidden") {
+    toggle.style.visibility = "visible"
+   } else {
+    toggle.style.visibility = "hidden"
+   }
+}
 
         $scope.get_products = function() {
+            $scope.unhide_menu(search_button);
             $scope.get_updates(); 
             $http({
                 method: 'GET',
@@ -188,12 +199,14 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                setTimeout(function(){
                 clearInterval(ping_products );
                  console.log("Stoppping")
+                  $scope.unhide_menu(search_button);
             },2000)
               
             }).error(function(response){
                 setTimeout(function(){
                 clearInterval(ping_products );
                  console.log("Stoppping")
+                  $scope.unhide_menu(search_button);
             },2000)
             })
         }

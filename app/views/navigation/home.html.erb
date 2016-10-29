@@ -46,8 +46,8 @@
 	  	<div class="col-xs-6" >
 	  		
 			<h3> Create an API Key </h3>
-			<button type="button" class="btn btn-success" ng-click="unhide_menu()"  > View API keys</button>
-			<div ng-controller="ApiKey" id="keys" style=" visibility:hidden;height:150px;overflow-y:scroll;">
+			<button type="button" class="btn btn-success" ng-click="unhide_menu(api_key_menu)"  > View API keys</button>
+			<div ng-controller="ApiKey" id="api_key_menu"  style=" visibility:hidden;height:150px;overflow-y:scroll;">
 				<br>
 				<button type="submit" class="btn btn-danger" ng-click="create_api_key()"> Create API Key </button>
 				<p> Api Keys:  </p>

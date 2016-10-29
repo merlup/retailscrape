@@ -53,6 +53,7 @@ def get_type
       @model_section = "mens"
          if @store == "Macys"
            @shopping_from = "www1.macys.com"
+             @selector = "#browse_womens_default_product" 
           else
         @shopping_from = "www1.bloomingdales.com"
         @model_type = "coats-jackets"
@@ -63,6 +64,7 @@ def get_type
         @model_section = "mens"
          if @store == "Macys"
            @shopping_from = "www1.macys.com"
+             @selector = "#browse_womens_default_product" 
           else
          @shopping_from = "www1.bloomingdales.com"  
         @model_type = "casual-button-down-shirts"
@@ -73,6 +75,10 @@ def get_type
      when "suits-tux"
         @model_section = "mens"
        if @store == "Macys"
+         @model_section = "mens-clothing"
+        @model_type = 'mens-suits'  
+        @selector = "#browse_womens_default_product" 
+        @model_id = 17788
            @shopping_from = "www1.macys.com"
           else
          @shopping_from = "www1.bloomingdales.com"   
@@ -83,7 +89,8 @@ def get_type
      when "belts"
        @model_section = "mens"
        if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
           @shopping_from = "www1.bloomingdales.com"     
         @model_type = "mens-designer-belts"
@@ -93,7 +100,10 @@ def get_type
      when "dress-shoes"
       @model_section = "mens"
        if @store == "Macys"
+        @model_type = "shop-all-mens-footwear"  
+        @selector = "#browse_womens_default_product" 
            @shopping_from = "www1.macys.com"
+           @model_id = 55822
           else
         @shopping_from = "www1.bloomingdales.com"        
         @model_type = "dress-shoes"
@@ -103,7 +113,8 @@ def get_type
      when "sneakers"
       @model_section = "mens"
        if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
          @shopping_from = "www1.bloomingdales.com"     
         @model_type = "sneakers-athletic"
@@ -113,7 +124,8 @@ def get_type
      when "sweaters"
       @model_section = "mens"
        if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "sweaters-sweater-vests"
@@ -123,7 +135,8 @@ def get_type
      when "bags"
        @model_section = "mens"
        if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "bags-briefcases"
@@ -133,7 +146,8 @@ def get_type
      when "watches"
       @model_section = "mens"
        if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com" 
+            @selector = "#browse_womens_default_product" 
           else
           @shopping_from = "www1.bloomingdales.com"      
         @model_type = "watches"
@@ -144,7 +158,8 @@ def get_type
       when "dresses"
         @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com" 
+           @selector = "#browse_womens_default_product" 
           else
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "dresses"
@@ -155,7 +170,8 @@ def get_type
       when "coats"
       @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else  
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "coats"
@@ -166,7 +182,8 @@ def get_type
       when "womens-jeans"
         @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
         @shopping_from = "www1.bloomingdales.com"
         @model_type = "jeans"
@@ -176,7 +193,8 @@ def get_type
       when "tops-tees"
       @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
           @shopping_from = "www1.bloomingdales.com"   
         @model_type = "tops-tees"
@@ -186,7 +204,8 @@ def get_type
       when "womens-sweaters"
         @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
           @shopping_from = "www1.bloomingdales.com"   
           @model_type = "sweaters"
@@ -196,7 +215,8 @@ def get_type
       when "active-workout"
       @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com" 
+            @selector = "#browse_womens_default_product" 
           else
         @shopping_from = "www1.bloomingdales.com"    
         @model_type = "activewear-workout-clothes"
@@ -206,7 +226,8 @@ def get_type
       when "jackets"
         @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
           @shopping_from = "www1.bloomingdales.com"   
         @model_type = "jackets-blazers"
@@ -216,7 +237,8 @@ def get_type
       when "skirts"
         @model_section = "womens-apparel"
          if @store == "Macys"
-           @shopping_from = "www1.macys.com"
+           @shopping_from = "www1.macys.com"  
+           @selector = "#browse_womens_default_product" 
           else
         @shopping_from = "www1.bloomingdales.com" 
         @model_type = "skirts"
@@ -324,7 +346,7 @@ def get_type
                 @product.sale_price = product.at_css(".priceSale").text.strip
               end
             @product.save
-
+ debugger
             item_count = item_count + 1
             next_page = next_page + 1
           end
@@ -337,23 +359,97 @@ def get_type
   end
 
 def get_products_womens
-   get_type()
+  get_type()
 
+    next_page = 1
+    item_count = 0
+    owner_id = current_user.id
 
-    #ScraperWorker.perform_async(@store,@shopping_from,@selector,@model_type,@model_id,@model_section,current_user.id)
-render :nothing => true
-end
+    if @store == "Bloomingdales"
+      @doc = Nokogiri::HTML(open("http://#{@shopping_from}/shop/#{@model_section}/#{@model_type}/Pageindex/#{@next_page}?id=#{@model_id}"))
+    end
 
-  def destroy
-    if @product.user_id = current_user.id
-    	@product = Product.find_by_id(params[:id])
-      @product.destroy
-      flash[:success] = "Product deleted"
-      redirect_to products_path
-    else
-      flash[:warning] = "Nice Try!"
-      redirect_to  products_path
+      # This query is prefomed to create four needed variables.
+      # Current_page is the First Page we initial query. 
+      # Total Items is a string ie "100 products" this string then gets parsed for all Numbers in the string and then set as Total_number.
+      # Number of Pages is needed to know how many pages we should have parsed
+      if @store == "Bloomingdales"
+        p "Found"
+        @doc.css(@selector).each do |result|  
+          total_items = result.css('#productCount').text.strip
+          @total_number = total_items.scan(/\d/).join('')
+          @number_of_pages = (@total_number.to_f / 90).round
+        end
       end
+
+
+    if @store == "Bloomingdales"
+      p "Looping Bloomingdales"
+      @doc = Nokogiri::HTML(open("http://#{@shopping_from}/shop/#{@model_section}/#{@model_type}/Pageindex/#{@next_page}?id=#{@model_id}"))
+      while item_count <= @total_number.to_f
+       @doc.css(@selector).each do |result|
+          result.css(".thumbnailItem").each do |product|
+            
+            @product = Product.new
+            @product.user_id =  owner_id
+            @product.description = product.at_css("#prodName").text
+            @product.brand = product.at_css("#brandName").text
+            @product.original_image_url = product.at_css("img").attr('src')
+            @product.price = product.at_css(".priceSale").text.strip
+              if product.at_css(".prices").text.strip.include?("Sale")
+                @product.sale = true
+                @product.sale_price = product.at_css(".priceSale").text.strip
+              end
+            @product.save
+            item_count = item_count + 1
+            next_page = next_page + 1
+          end
+        end
+      end
+    end
+
+
+      if @store == "Macys"
+        @doc = Nokogiri::HTML(open("http://#{@shopping_from}/shop/#{@model_section}/#{@model_type}/Pageindex/#{@next_page}?id=#{@model_id}"))
+      
+        @doc.css('#browse_womens_default_pageRegion').each do |result|
+          total_items = result.css('#productCount').text
+          @total_number = total_items.scan(/\d/).join('')
+          @number_of_pages = (@total_number.to_f / 60).round
+         
+        end
+        
+      end
+
+ if @store == "Macys"
+      p "Looping MAcys"
+       
+      @doc = Nokogiri::HTML(open("http://#{@shopping_from}/shop/#{@model_section}/#{@model_type}/Pageindex/#{@next_page}?id=#{@model_id}"))
+      while item_count <= @total_number.to_f
+       @doc.css(@selector).each do |result|
+          result.css(".borderless").each do |product|
+          
+            @product = Product.new
+            @product.user_id =  owner_id
+            @product.description = product.at_css(".shortDescription").text
+            @product.brand = product.at_css(".shortDescription").text
+            @product.original_image_url = (product.at_css("img").attr('data-src'))
+            @product.price = product.at_css(".first-range").text.strip
+              if product.at_css(".prices").text.strip.include?("Sale")
+                @product.sale = true
+                @product.sale_price = product.at_css(".priceSale").text.strip
+              end
+            @product.save
+           
+            item_count = item_count + 1
+            next_page = next_page + 1
+          end
+        end
+      end
+    end
+  p "$"*65, @shopping_from, @store, "$"*65
+    #ScraperWorker.perform_async(@store,@shopping_from,@selector,@model_type,@model_id,@model_section,current_user.id)
+  render json: @products
   end
 
   def destroy_all

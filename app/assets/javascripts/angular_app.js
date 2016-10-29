@@ -61,7 +61,14 @@ $scope.collections = [];
     ApiKey.query().then(function (results) {
         $scope.api_keys = results;
     });
-
+$scope.unhide_menu = function() {
+   var toggle = document.getElementById("keys");
+   if (toggle.style.visibility == "hidden") {
+    toggle.style.visibility = "visible"
+   } else {
+    toggle.style.visibility = "hidden"
+   }
+}
 
     $scope.create_api_key = function(user_id) {
         $scope.upload = Upload.upload({
@@ -155,10 +162,16 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_mens",
                 params: {type: this.type, store: this.store}  
             }).success(function(){
-             
+               setTimeout(function(){
+                clearInterval(ping_products );
+                 console.log("Stoppping")
+            },2000)
+              
             }).error(function(response){
-                console.log(response);
-               
+                setTimeout(function(){
+                clearInterval(ping_products );
+                 console.log("Stoppping")
+            },2000)
             })
         }
 
@@ -169,19 +182,20 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
                 url: "get_products_womens",
                 params: {type: this.type, store: this.store}  
             }).success(function(){
-                $scope.get_updates();
+                setTimeout(function(){
+                clearInterval(ping_products );
+                 console.log("Stoppping")
+            },2000)
             }).error(function(response){
-                console.log(response);
+                 setTimeout(function(){
+                clearInterval(ping_products );
+                 console.log("Stoppping")
+            },2000)
             })
         }
 
     var ping_products;
    $scope.get_updates = function() {
-    var get_counter;
-    $scope.counter = 0
-    $scope.last = 0
-    $scope.time = (Date.now()).toLocaleString();
-    var ping_stopper;
         var get_products = function() {
             Product.query().then(function(results){
                 $scope.user_products = results
@@ -189,34 +203,6 @@ app.controller("ProductsCtrl", ['$scope', "Product", "Collection", "LineItem", "
             });
         }
         ping_products = setInterval(get_products,1000);
-        get_counter = setInterval(function(){
-            console.log("COUNTER: ",$scope.counter)
-            $scope.$watch($scope.counter, function() {
-                if($scope.counter > $scope.last) {
-                        $scope.last = $scope.counter
-                        $scope.time = (Date.now()).toLocaleString();
-                    console.log("Counter Changed", $scope.counter, "Changed", "Counter Last",$scope.last)
-                } else {
-                    $scope.last = $scope.last
-                    console.log("nothing updated", $scope.counter, "still the same")
-                }
-            })
-        },1000)
-       
-       
-
-      ping_stopper = setInterval(function() {
-            $scope.current_check = (Date.now()).toLocaleString();
-            console.log("checking to see if there were any updates", $scope.time, "Count Has increased since last check at ", $scope.last_check)
-            if($scope.counter == $scope.last) {
-                console.log("Stop Ping")
-                clearInterval(ping_products );
-                clearInterval(get_counter );
-                clearInterval(ping_stopper );
-            }
-            $scope.last_check = $scope.current_check
-        },20000)
-     
     }
           
       

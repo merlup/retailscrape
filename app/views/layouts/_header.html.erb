@@ -1,22 +1,50 @@
-   <nav  class="navbar navbar-inverse">
-   <div class="navbar-header">
-    <div class="navbar-brand">RETAIL SCRAPE</div>
-   </div>
-   <div class="collapse navbar-collapse">
-   <ul class="nav navbar-nav">
-    <li><a ui-sref="home">Home </a></li>
-     <li><a ui-sref="products">Products </a></li>
-      <% if current_user != nil %>
-       <li><a ui-sref="collections" ng-controler="ProductsCtrl">
-       My Collections
-       </a></li>
-        <li> <a ui-sref="log_out">| Log Out (<%= current_user.user_name %>)</a></li>
-        
-      <% else %>
-      <li><a ui-sref="log_in">Log In</a></li>
-      <li> <a ui-sref="sign_up">Sign Up</a></li>
-     
-      <% end %>
-      </ul>
-      </div>
-   </nav>
+<nav class="navbar navbar-static-top" role="navigation" style="background-color:black">  
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://www.linkedin.com/in/merlup" style="margin-top:1px; font-weight:600; color: white">
+        RETAILSCRAPE
+      </a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-2x fa-bars" aria-hidden="true" style="color:white;">MENU</i>
+      </button> 
+    </div>
+    <div class="row">
+      <div class="collapse shrunk navbar-collapse" id="nav-links">
+
+        <% if logged_in?%>
+        <div style="text-align:center">
+         <p class="navbar-text nav navbar-nav navbar-left">
+          <a ui-sref="home" class="navbar-link nav_tabs"><i class="fa fa-user" aria-hidden="true"></i>Home</a>
+          </p>
+            <p class="navbar-text nav navbar-nav navbar-left">
+            <a ui-sref="products" class="navbar-link nav_tabs"><i class="fa fa-life-ring" aria-hidden="true"></i> </i>Products</a></span>
+          </p>
+          <p class="navbar-text nav navbar-nav navbar-left">
+          <a ui-sref="collections" class="navbar-link nav_tabs"><i class="fa fa-plus-square"></i> Collections</a></span>
+        <p class="navbar-text nav navbar-nav navbar-left"> </p>
+          <li class="navbar-text  nav_tabs nav navbar-nav navbar-left">
+            <span class="dropdown nav_tabs navbar-link">
+              <a ui-sref="log_out"><i class="fa fa-user" aria-hidden="true"></i> Log Out: <%= current_user.user_name %></a>
+            
+            </span>
+          </li> 
+          </p>
+          </div>
+        <% else %>
+          <div style="text-align:center">
+           <p class="navbar-text nav navbar-nav navbar-left">
+          <a ui-sref="home" class="navbar-link nav_tabs"><i class="fa fa-user" aria-hidden="true"></i>Home</a>
+          </p>
+          <p class="navbar-text nav navbar-nav navbar-left">
+          <a ui-sref="sign_up" class="navbar-link nav_tabs"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a>
+          </p>
+          <p class="navbar-text nav navbar-nav navbar-left"><a ui-sref="log_in" class="navbar-link"> <i class="fa fa-user" aria-hidden="true"></i>  Log in</a></p>
+          </div>
+        <% end %>
+        </ul>
+      </div> 
+    </div>
+  </div>
+
+  </nav>

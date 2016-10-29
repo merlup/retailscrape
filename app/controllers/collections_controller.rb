@@ -61,7 +61,7 @@ end
   	@collection = Collection.find_by_id(params[:id])
     @line_items = LineItem.all
     else
-    @line_items & @collections = [] 
+    return
   end
   end
 

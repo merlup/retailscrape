@@ -8,8 +8,8 @@ class CollectionsController < ApplicationController
     @collections = current_user.collections
     render json: @collections
   else
-    @collections = []
-    render json: @collections
+    return
+   
   end
   end
 

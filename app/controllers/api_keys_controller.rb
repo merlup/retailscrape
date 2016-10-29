@@ -10,8 +10,8 @@ def index
 	@api_keys = current_user.api_keys
 	render json: @api_keys
 	else
-	@api_keys = []
-	render json: @api_keys
+	return
+	
 end
 end
 

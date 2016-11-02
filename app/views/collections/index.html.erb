@@ -2,6 +2,9 @@
 
 <div class="row" ng-controller="Collection">
       <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
+     
+
+       </tjs-model-viewer>
       <div class="row" >
        <h1 style="text-align:center;"><%= current_user.user_name %>'s Collection</h1>
        <div ng-repeat="collection in collections">
@@ -15,7 +18,7 @@
 			{{lineItem.sale}}<br>
 			{{lineItem.sale_price}}<br>
                <button type="button" class="btn-xs btn-danger" ng-click="delete_line_item({id: lineItem.id})"> Delete an Item </button></div>
-			
+
               </div>
             </div>
         </div>

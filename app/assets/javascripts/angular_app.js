@@ -1,4 +1,4 @@
-var app = angular.module("RetailScrape", ['ngAnimate', 'rails-template-cache', 'angularUtils.directives.dirPagination', 'ui.router', 'rails', 'ngFileUpload' ]);
+var app = angular.module("RetailScrape", ['ngAnimate', 'rails-template-cache', 'angularUtils.directives.dirPagination', 'tjsModelViewer', 'ui.router', 'rails', 'ngFileUpload' ]);
 
 app.factory('Product', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/products', name: 'product'});
@@ -186,10 +186,18 @@ $scope.unhide_menu = function(element) {
    } else {
     toggle.style.visibility = "hidden"
    }
-}
+}  
+ $scope.hideStuff = function () {
+        $scope.startFade = true;
+        setTimeout(function(){
+            $scope.hidden = true;
+        }, 2000);
+        
+    };
 
         $scope.get_products = function() {
             $scope.unhide_menu(search_button);
+            document.getElementById('dancer').style.visibility = "visible"
             $scope.get_updates(); 
             $http({
                 method: 'GET',
@@ -198,13 +206,15 @@ $scope.unhide_menu = function(element) {
             }).success(function(){
                setTimeout(function(){
                 clearInterval(ping_products );
-                 console.log("Stoppping")
+                $scope.hideStuff();
+               console.log("Stoppping")
                   $scope.unhide_menu(search_button);
             },2000)
               
             }).error(function(response){
                 setTimeout(function(){
                 clearInterval(ping_products );
+                document.getElementById('dancer').style.visibility = "hidden"
                  console.log("Stoppping")
                   $scope.unhide_menu(search_button);
             },2000)

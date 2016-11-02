@@ -1,5 +1,6 @@
 <%= cache do %>
 <% if !logged_in? %>
+
   <div class="col-xs-12"  >
     <h2 style="text-align:center;"> To get products use the App please sign up. </h2>
     <div style="display:inline-block;">
@@ -78,7 +79,8 @@
               </select>
 
              
-    </div>  
+    </div> 
+ 
     <br>
     <br>
      <div style="text-align:center;">
@@ -97,7 +99,9 @@
       </div>
       </div>
     <br>
-
+   <div ng-class="{fade: startFade}" style="z-index:2;position:absolute;visibility:hidden;" id="dancer" >
+ <img src="http://45.media.tumblr.com/d799ad55c1a36417ef381ee48385987a/tumblr_o1ktxtayAL1ui6flqo1_400.gif">
+</div> 
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2" ui-view="products">
       <div class="row" >

@@ -47,7 +47,7 @@ def get_type
            @shopping_from = "www1.bloomingdales.com"
           @model_type = "jeans"
           @model_id = 10172
-          @selector = "#row3_column1"
+          @selector = "#row2_column1"
         end  
       when "coats-jackets"
       @model_section = "mens"
@@ -58,7 +58,7 @@ def get_type
         @shopping_from = "www1.bloomingdales.com"
         @model_type = "coats-jackets"
         @model_id = 11548
-         @selector = "#row3_column1" 
+         @selector = "#row2_column1"
         end  
       when "button-downs"
         @model_section = "mens"
@@ -69,7 +69,7 @@ def get_type
          @shopping_from = "www1.bloomingdales.com"  
         @model_type = "casual-button-down-shirts"
         @model_id = 17648
-        @selector = "#row3_column1"
+        @selector = "#row2_column1"
           
         end  
      when "suits-tux"
@@ -84,7 +84,7 @@ def get_type
          @shopping_from = "www1.bloomingdales.com"   
         @model_type = "suits-tuxedos"
         @model_id = 1003462
-        @selector = "#row3_column1" 
+        @selector = "#row2_column1"
         end  
      when "belts"
        @model_section = "mens"
@@ -95,7 +95,7 @@ def get_type
           @shopping_from = "www1.bloomingdales.com"     
         @model_type = "mens-designer-belts"
         @model_id = 1000060
-        @selector = "#row3_column1" 
+        @selector = "#row2_column1"
         end  
      when "dress-shoes"
       @model_section = "mens"
@@ -108,7 +108,7 @@ def get_type
         @shopping_from = "www1.bloomingdales.com"        
         @model_type = "dress-shoes"
         @model_id = 1001183
-         @selector = "#row3_column1"
+        @selector = "#row2_column1"
         end  
      when "sneakers"
       @model_section = "mens"
@@ -119,7 +119,7 @@ def get_type
          @shopping_from = "www1.bloomingdales.com"     
         @model_type = "sneakers-athletic"
         @model_id = 1000054
-         @selector = "#row3_column1"
+        @selector = "#row2_column1"
         end  
      when "sweaters"
       @model_section = "mens"
@@ -130,7 +130,7 @@ def get_type
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "sweaters-sweater-vests"
         @model_id = 10258
-        @selector = "#row3_column1" 
+        @selector = "#row2_column1"
         end  
      when "bags"
        @model_section = "mens"
@@ -141,7 +141,7 @@ def get_type
          @shopping_from = "www1.bloomingdales.com"    
         @model_type = "bags-briefcases"
         @model_id = 1000059
-         @selector = "#row3_column1" 
+        @selector = "#row2_column1" 
         end 
      when "watches"
       @model_section = "mens"
@@ -152,7 +152,7 @@ def get_type
           @shopping_from = "www1.bloomingdales.com"      
         @model_type = "watches"
         @model_id = 1000066
-        @selector = "#row1_column1"
+        @selector = "#row2_column1"
           
         end  
       when "dresses"

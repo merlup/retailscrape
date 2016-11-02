@@ -12,6 +12,10 @@
 //
 
 //= require angular
+//= require tjsModelViewer
+//= require three
+//= require AssimpJsonLoader
+
 //= require rails-template-cache/rails-template-cache
 //= require angular-strap
 //= require angular-animate

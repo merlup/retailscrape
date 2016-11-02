@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 			 session[:user_id] = @user.id
 
 			log_in @user
-			redirect_to root_url
+			redirect_to products_path
 			else 
 			flash[:warning] = @user.errors.full_messages.to_sentence
 			render new_user_path

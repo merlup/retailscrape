@@ -197,7 +197,7 @@ $scope.unhide_menu = function(element) {
 
         $scope.get_products = function() {
             $scope.unhide_menu(search_button);
-            document.getElementById('dancer').style.visibility = "visible"
+           
             $scope.get_updates(); 
             $http({
                 method: 'GET',
@@ -214,7 +214,7 @@ $scope.unhide_menu = function(element) {
             }).error(function(response){
                 setTimeout(function(){
                 clearInterval(ping_products );
-                document.getElementById('dancer').style.visibility = "hidden"
+                
                  console.log("Stoppping")
                   $scope.unhide_menu(search_button);
             },2000)

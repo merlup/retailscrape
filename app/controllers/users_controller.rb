@@ -5,10 +5,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			flash[:success] = "Welcome to the App"
 			current_user = @user
 			 session[:user_id] = @user.id
-
 			log_in @user
 			redirect_to products_path
 			else 
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
 		if logged_in? && current_user.id == params[:id]
 		@user = User.find_by_id(params[:id])
 		else
-			flash[:notice] = "Please Log In or Create an Account"
+			
 			redirect_to root_url
 		end
 	end
@@ -32,7 +30,7 @@ class UsersController < ApplicationController
 			@users = User.all
 		else
 			redirect_to root_url
-			flash[:warning] = "You prolly shouldn't be doing that"
+			
 		end
 	end
 

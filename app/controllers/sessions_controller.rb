@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
 	def create
 		user = User.find_by(user_name: params[:session][:user_name])
 		if user.blank?
-			flash[:danger] = "User Does Not Exsist"
+			
 			render 'new'
 		end
 
 		if user && user.authenticate(params[:session][:password]) 
 			log_in user
-			redirect_to root_url
+			redirect_to products_path
 		else
-			flash[:danger] = 'Invalid email/password combination'
+			
 	       render 'new'
     	end
  	end
